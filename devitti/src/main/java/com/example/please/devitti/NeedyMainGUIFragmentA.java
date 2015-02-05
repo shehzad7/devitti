@@ -490,6 +490,7 @@ public class NeedyMainGUIFragmentA extends Fragment {
 //            return dM.getLendingDetailsForACause(new Cause("2","","","","","","","","","","",null,""));
             return  dM.getAllCausesByUserAndDetailsForAllCauses (needyId, causesByThisUser);
 
+            
         }
 
         @Override

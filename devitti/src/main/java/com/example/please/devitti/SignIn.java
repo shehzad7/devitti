@@ -281,7 +281,7 @@ public class SignIn extends Activity{
                 Toast.makeText(getApplicationContext(), "No Login Details found!!\nYou either have an incorrect \nUsername or Password",
                         Toast.LENGTH_SHORT).show();
             }
-            else
+            else if (userDetails[5].contains("needy") )
             {
 //                i
 //                String dataTemp = "LOGIN USER DETAILS:  ";
@@ -319,6 +319,12 @@ public class SignIn extends Activity{
 
                 startActivity( gettotheneedyGUI );
 
+
+            }
+            else if (userDetails[5].contains("helper"))
+            {
+                Toast.makeText(getApplicationContext(), "Its a helper account but i dont have shit!!! give me some info man!!! :/",
+                        Toast.LENGTH_SHORT).show();
 
             }
         }
