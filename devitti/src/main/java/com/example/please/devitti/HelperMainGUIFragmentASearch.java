@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
@@ -22,6 +23,10 @@ public class HelperMainGUIFragmentASearch extends Fragment {
     Spinner categorySpinner;
     Spinner amountRangeSpinner;
     Spinner causeTypeSpinner;
+
+    EditText email;
+    EditText country;
+    EditText city;
 
     ImageButton searchButton;
 
@@ -36,7 +41,11 @@ public class HelperMainGUIFragmentASearch extends Fragment {
         // Inflate the layout for this fragment
        View myView =  inflater.inflate(R.layout.helper_search, container, false);
 
-        ImageButton searchButton =  (ImageButton) myView.findViewById(R.id.HSSearchButton);
+        searchButton =  (ImageButton) myView.findViewById(R.id.HSSearchButton);
+        email  = (EditText) myView.findViewById(R.id.HSEmail);
+        country = (EditText) myView.findViewById(R.id.HSCountry);
+        city  = (EditText) myView.findViewById(R.id.HSCity);
+
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +101,22 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 //        });
 
 
+    }
+
+
+
+
+    public String getRelevantQuery()
+    {
+        if(email.getText().toString()!="")
+        {
+
+        }
+
+
+
+
+        return null;
 
     }
 }
