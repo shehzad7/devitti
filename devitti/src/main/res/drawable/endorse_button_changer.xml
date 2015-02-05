@@ -1,0 +1,5 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:state_focused="true" android:drawable="@drawable/loginfocus"/>-->
+    <item android:state_pressed="true" android:drawable="@drawable/endorsebuttonclicked" />
+    <item android:drawable="@drawable/endorsebuttonnotclicked" />  //means normal
+</selector>

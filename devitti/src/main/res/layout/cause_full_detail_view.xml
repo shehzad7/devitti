@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/CFDVScrollViewMain"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    >
+
+    <!-- The main linear lay out which has all the other Sub layouts -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <!-- Logo -->
+
+        <LinearLayout android:focusable="true"
+            android:focusableInTouchMode="true" android:layout_width="0px"
+            android:layout_height="0px" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="0dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/logo_pic"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:src="@drawable/causefulldetailview"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+
+        <!-- .............................................................. -->
+
+
+        <!-- Username details -->
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/userndasdfscdfame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+                android:paddingLeft="20dp"
+                android:text="Join in to help: "
+                android:textColor="#344152"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <ImageButton
+                android:id="@+id/CFDVdonateButtonSmall"
+                android:layout_width="86dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/donate_button_changer"
+                android:layout_marginRight="20dp"
+
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/userndasdfscsdfdfame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+                android:paddingLeft="20dp"
+                android:text="You think this cause is genuine? endorse here "
+                android:textColor="#344152"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <ImageButton
+                android:id="@+id/CFDVEndorseButtonSmall"
+                android:layout_width="86dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/endorse_button_changer"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/userndasdfscsdfdfamsdfe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+                android:paddingLeft="20dp"
+                android:text="Visit needy's profile: "
+                android:textColor="#344152"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+            <ImageButton
+                android:id="@+id/CFDVProfileButtonSmall"
+                android:layout_width="86dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/profile_button_changer"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/userndcdfame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+                android:paddingLeft="20dp"
+                android:text="Cause Description: "
+                android:textColor="#344152"
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <TextView
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="description this is some random text that you can show here .. it can have a limit lets just see how long it can be .. in my opinion it cannot be any  longer that 500 characters but hey who knows it could be larger:) heheehehehehe omg it   can be very long .. "
+                android:id="@+id/NECLISTDescription"
+                android:layout_below="@+id/NECLISTStatusOfCause"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="6dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="150dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Percentage Completed:"
+                    android:id="@+id/textViewAasdSDF"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="20dp"
+
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="100%"
+                    android:id="@+id/sd"
+                    android:layout_gravity="right"
+                    android:paddingRight="10dp"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+
+            </RelativeLayout>
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="20dp">
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="No. of endorsements:"
+                    android:id="@+id/textViewASDF"
+                    android:paddingLeft="20dp"
+                    android:paddingBottom="20dp"
+
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="32"
+                    android:id="@+id/textVrfieASDASDw"
+                    android:layout_gravity="right"
+                    android:paddingRight="10dp"
+
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+
+            </RelativeLayout>
+
+
+
+
+            </LinearLayout>
+
+        <RelativeLayout
+            android:layout_height="match_parent" android:layout_width="fill_parent">
+
+        <ListView
+            android:layout_height="200dp"
+            android:layout_width="fill_parent"
+            android:id="@+id/CFDVMainList"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="110dp"-->
+            <!-->-->
+
+
+
+            <!--<ListView-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="match_parent"-->
+
+                <!--android:id="@+id/CFDVMainList"-->
+                <!--android:paddingTop="20dp"-->
+                <!--android:paddingLeft="10dp"-->
+                <!--android:layout_alignParentTop="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true" />-->
+
+        <!--</RelativeLayout>-->
+
+    </LinearLayout>
+
+
+
+</ScrollView>

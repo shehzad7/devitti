@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+
+    <!-- The main linear lay out which has all the other Sub layouts -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="15dp"
+            android:background="#00A3E8"/>
+        <!-- Logo -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="0dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/logo_pic"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:src="@drawable/searchanycausehere" />
+        </LinearLayout>
+
+        <!-- .............................................................. -->
+
+
+        <!-- Username details -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/userndcfame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+                android:paddingLeft="20dp"
+                android:text="provide info in one or more fields"
+                android:textColor="#344152" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/vscvdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+
+            android:layout_marginBottom= "10dp">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="20dp"
+                android:text="Email:             "
+                android:textColor="#009ACD"
+                android:gravity="bottom"
+                android:paddingBottom="10dp"
+                />
+
+            <EditText
+                android:id="@+id/username_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:paddingRight="20dp">
+
+                <!-- android:background="@drawable/textlines" -->
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fdsf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/u1"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="20dp"
+                android:text="Country:         "
+                android:textColor="#009ACD"
+                android:gravity="bottom"
+                android:paddingBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/u11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:ems="10"
+                android:paddingRight="20dp">
+
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/u2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="20dp"
+                android:text="City:                 "
+                android:textColor="#009ACD"
+                android:gravity="bottom"
+                android:paddingBottom="10dp"/>
+
+            <EditText
+                android:id="@+id/u21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:paddingRight="20dp">
+
+            </EditText>
+        </LinearLayout>
+
+        <!-- .............................................................. -->
+
+
+        <!-- Password Details -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/ui32r"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:paddingLeft="20dp"
+                android:text="Cause\nType:             "
+                android:textColor="#009ACD"
+                android:paddingBottom="12dp"
+                />
+            <Spinner
+                android:id="@+id/cause_type_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pasdfs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/fsdf4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/u3441"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="20dp"
+                    android:text="   \nCatagory:    "
+                    android:textColor="#009ACD"
+                    android:paddingBottom="0dp"
+                    />
+
+                <Spinner
+                    android:id="@+id/catagory_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fsd43f4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:id="@+id/u334441"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:paddingLeft="20dp"
+                    android:text="Amount\n Range:         "
+                    android:textColor="#009ACD"
+                    android:paddingBottom="15dp"/>
+
+                <Spinner
+                    android:id="@+id/amount_range_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+        <!-- Login button -->
+
+        <LinearLayout
+            android:id="@+id/loginButton_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/HSSearchButton"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_gravity="top|right"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/search_button_changer"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/signup_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Or, use google maps"
+                android:layout_marginLeft="21dp"/>
+
+            <ImageButton
+                android:id="@+id/signupp_button"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_gravity="left"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/maps_button_changer"
+
+                />
+        </LinearLayout>
+
+
+        <!-- Sign Up Button Details -->
+
+
+    </LinearLayout>
+
+</ScrollView>

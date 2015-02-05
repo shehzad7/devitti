@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!-- The main linear lay out which has all the other Sub layouts -->
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffffff"
+        android:orientation="vertical">
+        <!-- Logo -->
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="15dp"
+        android:background="#00A3E8"/>
+
+
+
+        <!-- .............................................................. -->
+
+
+        <!-- Username details -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical"
+            android:paddingBottom="0dp"
+            android:weightSum="1">
+
+
+            <ImageView
+                android:id="@+id/listofcau"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/listofallyourcausestext"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="5dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/needy_own_causes_listview_layout">
+                <ScrollView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent">
+
+                    </ScrollView>
+
+                    <ListView
+                    android:layout_margin="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/mainList"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+            <TextView
+                android:paddingLeft="20dp"
+                android:text=""
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+
+
+            </LinearLayout>
+
+
+
+    </LinearLayout>

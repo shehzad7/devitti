@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- The main linear lay out which has all the other Sub layouts -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    >
+
+    <!--Logo-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
+        android:paddingTop="20dp"
+        >
+
+        <ImageView
+            android:id="@+id/logo_pic"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+
+            android:src="@drawable/logininwithdevitti"
+            />
+
+    </LinearLayout>
+
+
+
+    <!--Username details-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="0dp"
+        >
+
+
+        <LinearLayout android:focusable="true"
+            android:focusableInTouchMode="true" android:layout_width="0px"
+            android:layout_height="0px" />
+
+
+        <EditText
+
+
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:id="@+id/SIGNINUsername"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingRight = "20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text=""
+            android:textColor="#ff000000"
+            android:hint="Username"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+
+            >
+        </EditText>
+
+    </LinearLayout>
+
+
+
+    <!--Password Details-->
+    <LinearLayout
+        android:id="@+id/pas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+
+        <EditText
+
+
+            android:maxLines="1"
+            android:id="@+id/SIGNINPassword"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:paddingRight = "20dp"
+            android:inputType="textPassword"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:text=""
+            android:textColor="#ff000000"
+            android:hint="Password"
+            android:layout_gravity="center"
+
+
+            />
+    </LinearLayout>
+
+
+
+    <!-- Login button -->
+
+    <LinearLayout
+        android:id="@+id/loginButton_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/SIGNINLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:scaleType="fitCenter"
+            android:gravity = "center"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:background="@drawable/login_button_icon_changer"
+
+            android:adjustViewBounds="true"
+            />
+
+    </LinearLayout>
+
+    <!-- Sign Up Button Details -->
+
+    <LinearLayout
+        android:id="@+id/signup_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Or, you can sign up for free."
+            android:layout_marginLeft="21dp"/>
+
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/SIGNINLoginButton"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="0dp"-->
+            <!--android:layout_marginTop="0dp"-->
+            <!--android:scaleType="fitCenter"-->
+            <!--android:gravity = "center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:padding="20dp"-->
+            <!--android:background="@drawable/login_button_icon_changer"-->
+
+            <!--android:adjustViewBounds="true"-->
+            <!--/>-->
+
+        <ImageButton
+            android:id="@+id/SIGNINSignUpButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:padding="20dp"
+            android:scaleType="fitCenter"
+            android:background="@drawable/signup_button_icon_changer"
+            android:adjustViewBounds="true"
+
+            />
+    </LinearLayout>
+
+</LinearLayout>

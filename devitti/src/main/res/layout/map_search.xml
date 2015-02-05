@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <!-- The main linear lay out which has all the other Sub layouts -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+        <!-- Logo -->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="0dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp">
+
+            <ImageView
+                android:id="@+id/logo_pic"
+                android:layout_width="180dp"
+                android:layout_height="50dp"
+                android:src="@drawable/devitti" />
+        </LinearLayout>
+
+        <!-- .............................................................. -->
+
+
+        <!-- Username details -->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/userndcfame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.54"
+                android:paddingLeft="20dp"
+                android:text="map search view"
+                android:textColor="#344152" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

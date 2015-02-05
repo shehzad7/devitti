@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.please.devitti"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="17" />
+
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        > </uses-permission>
+
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"
+        ></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        >
+
+
+        <activity
+            android:name="com.example.please.devitti.JSONUseActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <activity
+            android:name="com.example.please.devitti.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <!--<meta-data-->
+            <!--android:name="com.google.android.gms.version"-->
+            <!--android:value="@integer/google_play_services_version" />-->
+
+        <!--<uses-library android:name="com.google.android.maps" />-->
+
+
+        <activity
+            android:name="com.example.please.devitti.HelperMainGui"
+            android:label="@string/app_name"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.please.devitti.NeedyMainGui"
+            android:label="@string/app_name"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity
+            android:name="com.example.please.devitti.SignIn"
+            android:label="Signin View" >
+            <intent-filter>
+                <action android:name="android.intent.action.SignInIntent" />
+
+                <category android:name="android.itent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.example.please.devitti.SignUp"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.SignUpIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.example.please.devitti.HelperSearch"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.HelperSearch" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+        android:name="com.example.please.devitti.NeedyMakeACause"
+        android:label="SignUp View" >
+        <intent-filter>
+            <action android:name="android.intent.action.NeedyMakeACause" />
+
+            <category android:name="android.intent.category.default" />
+        </intent-filter>
+
+         </activity>
+
+        <activity
+            android:name="com.example.please.devitti.NeedyExistingCauses"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.NeedyExistingCauses" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.example.please.devitti.HelperOwnProfile"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.HelperOwnProfileIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+        <activity
+            android:name="com.example.please.devitti.HelperFeed"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.HelperFeedIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+        <activity
+            android:name="com.example.please.devitti.HelperSearchResult"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.HelperSearchResultIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+
+        <activity
+            android:name="com.example.please.devitti.MapSearch"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.MapSearchIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+
+        <activity
+            android:name="com.example.please.devitti.NeedyClickOnOwnCause"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.NeedyClickOnOwnCauseIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+
+        <activity
+            android:name="com.example.please.devitti.NeedyProfile"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.NeedyProfileIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+        <activity
+            android:name="com.example.please.devitti.NeedyOthersClickOnCause"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.NeedyOthersClickOnCauseIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+
+        </activity>
+        <activity
+            android:name="com.example.please.devitti.CauseFullDetailView"
+            android:label="SignUp View" >
+            <intent-filter>
+                <action android:name="android.intent.action.CauseFullDetailViewIntent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </application>
+
+</manifest>
