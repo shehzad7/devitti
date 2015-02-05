@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 /**
@@ -30,6 +31,10 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
     ImageButton searchButton;
 
+    String[] dataFromSignIn;
+    String[] ctIds;
+    String[] ctNms;
+
     public HelperMainGUIFragmentASearch() {
         // Required empty public constructor
     }
@@ -38,6 +43,12 @@ public class HelperMainGUIFragmentASearch extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dataFromSignIn= getArguments().getStringArray("searchAndMore");
+        ctIds = getArguments().getStringArray("ctIDs");
+        ctNms  =getArguments().getStringArray("ctNms");
+
+
         // Inflate the layout for this fragment
        View myView =  inflater.inflate(R.layout.helper_search, container, false);
 
@@ -51,8 +62,12 @@ public class HelperMainGUIFragmentASearch extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intn = new Intent(getActivity(), HelperSearchResult.class);
-                startActivity(intn);
+                getRelevantQuery();
+
+
+//            IT COULD BE USED TO GO TO THE NEXT CAUSES WINDOW
+//                Intent intn = new Intent(getActivity(), HelperSearchResult.class);
+//                startActivity(intn);
             }
         });
 
@@ -69,7 +84,11 @@ public class HelperMainGUIFragmentASearch extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        String [] categroyData =  {"Education","Health","Business Expansion"};
+        email.setText( "");
+        country.setText("");
+        city.setText("");
+
+        String [] categroyData  = ctNms;
         categorySpinner = (Spinner) getActivity().findViewById(R.id.catagory_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,categroyData);
         categorySpinner.setAdapter(adapter);
@@ -105,13 +124,26 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
 
 
+    boolean isEmpty(EditText text) {
+        return text.getText().toString().trim().length()==0;
+    }
+
+    boolean isNotEmpty(EditText text) {
+        return text.getText().toString().trim().length()!=0;
+    }
 
     public String getRelevantQuery()
     {
-        if(email.getText().toString()!="")
+
+        String query "Select * from Causes"
+        if (isNotEmpty(email))
         {
 
         }
+        Toast.makeText(getActivity().getApplicationContext(),"Email: "  + email.getText()   + " Country: "  + country.getText()
+                        + " City: " + city.getText() + " Cause Type: " + causeTypeSpinner.getSelectedItem().toString() + " Catagory: "  +  categorySpinner.getSelectedItem().toString()
+                        + " Amount Range: "  + amountRangeSpinner.getSelectedItem().toString(),
+                Toast.LENGTH_SHORT).show();
 
 
 

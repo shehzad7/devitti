@@ -17,12 +17,23 @@ public class HelperMainGui extends FragmentActivity {
 
     ViewPager viewPager = null;
     PagerTitleStrip titleStrip;
+
+    String[] userDetailsArray = new String[13];
+
+
+    String  [] ctIds= null ;
+    String  [] ctNms = null;
+
     //    android.app.ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_act);
 
+        Bundle b=this.getIntent().getExtras();
+        userDetailsArray = b.getStringArray("helper");
+        ctIds = b.getStringArray("ctIDs");
+        ctNms = b.getStringArray("ctNms");
 
         viewPager = (ViewPager) findViewById(R.id.pager);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -51,15 +62,28 @@ public class HelperMainGui extends FragmentActivity {
         @Override
         public Fragment getItem(int i) {
 
+            Bundle bdl=new Bundle();
+            bdl.putStringArray("searchAndMore", userDetailsArray);
+            bdl.putStringArray("ctIDs" ,ctIds);
+            bdl.putStringArray("ctNms" ,ctNms);
+
+
+
             Fragment fragment = null;
             if (i == 0) {
                 fragment = new HelperMainGUIFragmentASearch();
+                fragment.setArguments(bdl);
+
             } else if (i == 1) {
                 fragment = new HelperMainGUIFragmentBProfile();
+                fragment.setArguments(bdl);
+
             }
             else if (i==2)
             {
                 fragment = new HelperMainGUIFragmentCFeed();
+                fragment.setArguments(bdl);
+
             }
 
 

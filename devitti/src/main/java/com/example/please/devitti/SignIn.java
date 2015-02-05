@@ -326,6 +326,43 @@ public class SignIn extends Activity{
                 Toast.makeText(getApplicationContext(), "Its a helper account but i dont have shit!!! give me some info man!!! :/",
                         Toast.LENGTH_SHORT).show();
 
+
+//                i
+//                String dataTemp = "LOGIN USER DETAILS:  ";
+//
+//                for (int i = 0; i<12; i++)
+//                {
+//                    dataTemp += userDetails[i];
+//                }
+//                Toast.makeText(getApplicationContext(), dataTemp,
+//                        Toast.LENGTH_LONG).show();
+
+
+                String [] catagoryIDs = new String[catagoryDetailsGot.length];
+                String [] catagoryNames = new String[catagoryDetailsGot.length];
+
+                for (int i = 0 ;i <catagoryIDs.length ;i++)
+                {
+                    catagoryIDs[i] = catagoryDetailsGot[i].catagoryId;
+                    catagoryNames[i] = catagoryDetailsGot[i].catagoryName;
+//                    Log.e("  ????? Catagory Id: " + catagoryIDs[i]+" Name: " + catagoryNames[i],"");
+                }
+
+
+                Bundle bndl=new Bundle();
+
+                bndl.putStringArray("helper", userDetails);
+                bndl.putStringArray("ctIDs" ,catagoryIDs);
+                bndl.putStringArray("ctNms" ,catagoryNames);
+
+
+//                bndl.putStringArray("needy", new String[]{"", ""});
+
+                Intent gettothehelperGUI =new Intent( SignIn.this, HelperMainGui.class );
+                gettothehelperGUI.putExtras(bndl);
+
+                startActivity( gettothehelperGUI );
+
             }
         }
     }
