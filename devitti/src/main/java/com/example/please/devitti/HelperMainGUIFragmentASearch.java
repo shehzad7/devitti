@@ -44,18 +44,18 @@ public class HelperMainGUIFragmentASearch extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        dataFromSignIn= getArguments().getStringArray("searchAndMore");
+        dataFromSignIn = getArguments().getStringArray("searchAndMore");
         ctIds = getArguments().getStringArray("ctIDs");
-        ctNms  =getArguments().getStringArray("ctNms");
+        ctNms = getArguments().getStringArray("ctNms");
 
 
         // Inflate the layout for this fragment
-       View myView =  inflater.inflate(R.layout.helper_search, container, false);
+        View myView = inflater.inflate(R.layout.helper_search, container, false);
 
-        searchButton =  (ImageButton) myView.findViewById(R.id.HSSearchButton);
-        email  = (EditText) myView.findViewById(R.id.HSEmail);
+        searchButton = (ImageButton) myView.findViewById(R.id.HSSearchButton);
+        email = (EditText) myView.findViewById(R.id.HSEmail);
         country = (EditText) myView.findViewById(R.id.HSCountry);
-        city  = (EditText) myView.findViewById(R.id.HSCity);
+        city = (EditText) myView.findViewById(R.id.HSCity);
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,6 @@ public class HelperMainGUIFragmentASearch extends Fragment {
         });
 
 
-
 //        setListenersToButtons();
 
         return myView;
@@ -84,30 +83,39 @@ public class HelperMainGUIFragmentASearch extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        email.setText( "");
+        email.setText("");
         country.setText("");
         city.setText("");
 
-        String [] categroyData  = ctNms;
+        String[] categroyData = ctNms;
+        String temp []  = new String[ctNms.length+1];
+        for (int i  = 0 ; i <temp.length-1 ; i ++)
+        {
+            temp[i+1] = ctNms[i];
+        }
+        temp[0]  = "select any";
+
+        categroyData = temp;
+
         categorySpinner = (Spinner) getActivity().findViewById(R.id.catagory_spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,categroyData);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, categroyData);
         categorySpinner.setAdapter(adapter);
 
 
-        String [] amountRangeData =  {"Rs. 500-1000","1000-2000","2000-5000","5000-10000","10000+"};
-        amountRangeSpinner = (Spinner)getActivity(). findViewById(R.id.amount_range_spinner);
-        ArrayAdapter <String> adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,amountRangeData);
+        String[] amountRangeData = {"select any","Rs. 500-1000", "1000-2000", "2000-5000", "5000-10000", "10000+"};
+        amountRangeSpinner = (Spinner) getActivity().findViewById(R.id.amount_range_spinner);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, amountRangeData);
         amountRangeSpinner.setAdapter(adapter2);
 
-        String [] CaueseTypeData =  {"loan","donation"};
-        causeTypeSpinner = (Spinner)getActivity(). findViewById(R.id.cause_type_spinner);
-        ArrayAdapter <String> adapter3 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,CaueseTypeData);
+        String[] CaueseTypeData = {"select any","loan", "donation"};
+        causeTypeSpinner = (Spinner) getActivity().findViewById(R.id.cause_type_spinner);
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, CaueseTypeData);
         causeTypeSpinner.setAdapter(adapter3);
 
 
     }
-    private void setListenersToButtons()
-    {
+
+    private void setListenersToButtons() {
 //        searchButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -123,27 +131,60 @@ public class HelperMainGUIFragmentASearch extends Fragment {
     }
 
 
-
     boolean isEmpty(EditText text) {
-        return text.getText().toString().trim().length()==0;
+        return text.getText().toString().trim().length() == 0;
     }
 
     boolean isNotEmpty(EditText text) {
-        return text.getText().toString().trim().length()!=0;
+        return text.getText().toString().trim().length() != 0;
     }
 
-    public String getRelevantQuery()
-    {
+    public String getRelevantQuery() {
 
-        String query "Select * from Causes"
-        if (isNotEmpty(email))
-        {
+        String[] f = new String[6];
 
+//        String query  = "Select * from Causes"
+        if (isNotEmpty(email)) {
+            f [0]  = email.getText().toString();
         }
-        Toast.makeText(getActivity().getApplicationContext(),"Email: "  + email.getText()   + " Country: "  + country.getText()
-                        + " City: " + city.getText() + " Cause Type: " + causeTypeSpinner.getSelectedItem().toString() + " Catagory: "  +  categorySpinner.getSelectedItem().toString()
-                        + " Amount Range: "  + amountRangeSpinner.getSelectedItem().toString(),
-                Toast.LENGTH_SHORT).show();
+        else { f [0] = "non" ;}
+
+        if (isNotEmpty(country)) {
+            f [1]  = country.getText().toString();
+        }
+        else { f [1] = "non" ;}
+
+        if (isNotEmpty(city)) {
+            f [2]  = city.getText().toString();
+        }
+        else { f [2] = "non" ;}
+
+        if (!(causeTypeSpinner.getSelectedItem().toString().contains("select any")))
+        {
+            f [3]  = causeTypeSpinner.getSelectedItem().toString();
+        }
+        else { f [3] = "non" ;}
+
+        if (!(categorySpinner.getSelectedItem().toString().contains("select any")))
+        {
+            f [4]  = categorySpinner.getSelectedItem().toString();
+        }
+        else { f [4] = "non" ;}
+
+        if (!(amountRangeSpinner.getSelectedItem().toString().contains("select any")))
+        {
+            f [5]  = amountRangeSpinner.getSelectedItem().toString();
+        }
+        else { f [5] = "non" ;}
+
+
+
+        System.out.println(f[0] +"  "+ f[1] +"  "+ f[2] +"  "+ f[3] +"  "+ f[4] +"  "+ f[5]);
+
+//        Toast.makeText(getActivity().getApplicationContext(), "Email: " + email.getText() + " Country: " + country.getText()
+//                        + " City: " + city.getText() + " Cause Type: " + causeTypeSpinner.getSelectedItem().toString() + " Catagory: " + categorySpinner.getSelectedItem().toString()
+//                        + " Amount Range: " + amountRangeSpinner.getSelectedItem().toString(),
+//                Toast.LENGTH_SHORT).show();
 
 
 
