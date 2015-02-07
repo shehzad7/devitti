@@ -1,6 +1,7 @@
 package com.example.please.devitti;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
@@ -20,6 +21,9 @@ import android.widget.Toast;
  * A simple {@link android.app.Fragment} subclass.
  */
 public class HelperMainGUIFragmentASearch extends Fragment {
+    _DATABASEManager dM =  new _DATABASEManager();
+
+    String [] dataFromSearchFields;
 
     Spinner categorySpinner;
     Spinner amountRangeSpinner;
@@ -64,7 +68,7 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
                 String [] data = getRelevantQuery();
 
-
+                new getCausesForSearch().execute();
 
 //            IT COULD BE USED TO GO TO THE NEXT CAUSES WINDOW
 //                Intent intn = new Intent(getActivity(), HelperSearchResult.class);
@@ -103,7 +107,7 @@ public class HelperMainGUIFragmentASearch extends Fragment {
         categorySpinner.setAdapter(adapter);
 
 
-        String[] amountRangeData = {"select any","Rs. 500-1000", "1000-2000", "2000-5000", "5000-10000", "10000+"};
+        String[] amountRangeData = {"select any"," 500-1000", "1000-2000", "2000-5000", "5000-10000", "10000+"};
         amountRangeSpinner = (Spinner) getActivity().findViewById(R.id.amount_range_spinner);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, amountRangeData);
         amountRangeSpinner.setAdapter(adapter2);
@@ -143,45 +147,46 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
     public String [] getRelevantQuery() {
 
-        String[] f = new String[6];
+        dataFromSearchFields = new String[6];
 
 //        String query  = "Select * from Causes"
         if (isNotEmpty(email)) {
-            f [0]  = email.getText().toString();
+            dataFromSearchFields [0]  = email.getText().toString();
         }
-        else { f [0] = "non" ;}
+        else { dataFromSearchFields [0] = "non" ;}
 
         if (isNotEmpty(country)) {
-            f [1]  = country.getText().toString();
+            dataFromSearchFields [1]  = country.getText().toString();
         }
-        else { f [1] = "non" ;}
+        else { dataFromSearchFields [1] = "non" ;}
 
         if (isNotEmpty(city)) {
-            f [2]  = city.getText().toString();
+            dataFromSearchFields [2]  = city.getText().toString();
         }
-        else { f [2] = "non" ;}
+        else { dataFromSearchFields [2] = "non" ;}
 
         if (!(causeTypeSpinner.getSelectedItem().toString().contains("select any")))
         {
-            f [3]  = causeTypeSpinner.getSelectedItem().toString();
+            dataFromSearchFields [3]  = causeTypeSpinner.getSelectedItem().toString();
         }
-        else { f [3] = "non" ;}
+        else { dataFromSearchFields [3] = "non" ;}
 
         if (!(categorySpinner.getSelectedItem().toString().contains("select any")))
         {
-            f [4]  = categorySpinner.getSelectedItem().toString();
+            dataFromSearchFields [4]  = categorySpinner.getSelectedItem().toString();
         }
-        else { f [4] = "non" ;}
+        else { dataFromSearchFields [4] = "non" ;}
 
         if (!(amountRangeSpinner.getSelectedItem().toString().contains("select any")))
         {
-            f [5]  = amountRangeSpinner.getSelectedItem().toString();
+            dataFromSearchFields [5]  = amountRangeSpinner.getSelectedItem().toString();
         }
-        else { f [5] = "non" ;}
+        else { dataFromSearchFields [5] = "non" ;}
 
 
 
-        System.out.println(f[0] +"  "+ f[1] +"  "+ f[2] +"  "+ f[3] +"  "+ f[4] +"  "+ f[5]);
+        System.out.println(dataFromSearchFields[0] +"  "+ dataFromSearchFields[1] +"  "+ dataFromSearchFields[2]
+                +"  "+ dataFromSearchFields[3] +"  "+ dataFromSearchFields[4] +"  "+ dataFromSearchFields[5]);
 
 //        Toast.makeText(getActivity().getApplicationContext(), "Email: " + email.getText() + " Country: " + country.getText()
 //                        + " City: " + city.getText() + " Cause Type: " + causeTypeSpinner.getSelectedItem().toString() + " Catagory: " + categorySpinner.getSelectedItem().toString()
@@ -191,10 +196,44 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
 
 
-        return f;
+
+        return dataFromSearchFields;
 
     }
 
+
+
+    public class getCausesForSearch extends AsyncTask<Integer, Integer, Cause[]>
+    {
+
+
+        protected Cause[] doInBackground(Integer... params) {
+
+//            Cause caus = new Cause(causeId,needyId,moneyAskedFor,descrip,status,type,dateOfRequest,dateOfCompletion,dateOfMaturity,lati,longi,null,catagory);
+//            return dM.getLendingDetailsForACause(new Cause("2","","","","","","","","","","",null,""));
+            System.out.println("<<<<<<<<>>>>>>>>>> I am here");
+            return  dM.getSearchResultForHelper (dataFromSearchFields);
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Cause[] st) {
+            super.onPostExecute(st);
+
+            System.out.println("<<<<<<<<>>>>>>>>>> got the result");
+            if (st!=null)
+            {
+                System.out.println("<<<<<<<<>>>>>>>>>> Its not null, the length is : "+ st.length);
+                for (int  i =  0 ; i <st.length ; i ++)
+                {
+                    System.out.println("Cause ID =  " +st[i].causeId  + " Amount: " + st[i].moneyAskedFor);
+                }
+            }
+
+
+        }
+    }
 
 
 

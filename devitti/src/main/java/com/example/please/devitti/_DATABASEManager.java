@@ -1025,14 +1025,13 @@ public class _DATABASEManager {
 
 
                 if (temp == null || "".equals(temp) || temp.length() < 40) {
+                    System.out.println("<<<<<<<<>>>>>>>>>> no cause Found man !!!");
                     ret = "no cause found";
 //                    Log.i("hehheh   ", needyId);
 
-                } else {
 
-                    Log.i(".........", ".........");
-                    Log.i("i am here too", ".........");
-                    Log.i(".........", ".........");
+                } else {
+                    System.out.println("<<<<<<<<>>>>>>>>>> yes we have something ");
 
                     try {
 
