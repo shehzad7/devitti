@@ -225,10 +225,15 @@ public class HelperMainGUIFragmentASearch extends Fragment {
             if (st!=null)
             {
                 System.out.println("<<<<<<<<>>>>>>>>>> Its not null, the length is : "+ st.length);
+                String text = "";
                 for (int  i =  0 ; i <st.length ; i ++)
                 {
+                    text += "\n " + "Cause ID =  " +st[i].causeId  + " Amount: " + st[i].moneyAskedFor ;
                     System.out.println("Cause ID =  " +st[i].causeId  + " Amount: " + st[i].moneyAskedFor);
                 }
+                Toast.makeText(getActivity(),text,
+                        Toast.LENGTH_LONG).show();
+
             }
 
 

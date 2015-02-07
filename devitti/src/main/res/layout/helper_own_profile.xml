@@ -59,6 +59,7 @@
             android:textColor="#00A3E8"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:paddingBottom="5dp"
+
             android:layout_marginTop="6dp"/>
 
         <RelativeLayout
@@ -69,18 +70,18 @@
                 android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Amount lended:            Rs:  "
+                android:text="Total Amount lended:            "
                 android:id="@+id/textView2"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textAppearance="?android:attr/textAppearanceSmall"/>
+                android:textAppearance="?android:attr/textAppearanceSmall" />
             <TextView
                 android:paddingLeft="11dp"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Amount donated:         Rs:  "
+                android:text="Total Amount donated:         "
                 android:layout_below="@+id/textView2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -90,21 +91,54 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3234"
-                android:layout_toEndOf="@+id/textView2"
-                android:layout_above="@+id/textView3"
-                android:layout_toRightOf="@+id/textView2"
-                android:id="@+id/HOPAmountLendedValue" />
+                android:text="3424"
+                android:layout_toEndOf="@+id/textView3"
+                android:id="@+id/HOPAmountDonatedValue"
+                android:layout_alignTop="@+id/textView3"
+                android:layout_toRightOf="@+id/textView3"
+                android:layout_marginLeft="51dp" />
+
+            <TextView
+                android:paddingLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs:"
+                android:id="@+id/textView4"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+
+                android:layout_alignBaseline="@+id/textView2"
+                android:layout_alignBottom="@+id/textView2"
+                android:layout_toLeftOf="@+id/HOPAmountLendedValue"
+                android:layout_toStartOf="@+id/HOPAmountLendedValue"
+                android:layout_marginRight="28dp" />
+
             <TextView
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3424"
-                android:layout_below="@+id/HOPAmountLendedValue"
-                android:layout_toRightOf="@+id/textView3"
-                android:layout_toEndOf="@+id/textView3"
-                android:id="@+id/HOPAmountDonatedValue"/>
+                android:text="3234"
 
+                android:id="@+id/HOPAmountLendedValue"
+                android:layout_gravity="right"
+                android:layout_weight="0.54"
+                android:layout_above="@+id/HOPAmountDonatedValue"
+                android:layout_alignLeft="@+id/HOPAmountDonatedValue"
+                android:layout_alignStart="@+id/HOPAmountDonatedValue"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:paddingLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs:"
+                android:id="@+id/textView5"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_below="@+id/textView4"
+                android:layout_alignRight="@+id/textView4"
+                android:layout_alignEnd="@+id/textView4"
+                android:layout_alignLeft="@+id/textView4"
+                android:layout_alignStart="@+id/textView4" />
 
 
         </RelativeLayout>
