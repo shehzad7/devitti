@@ -195,7 +195,7 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
     }
 
-    
+
 
 
 
