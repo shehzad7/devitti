@@ -62,7 +62,8 @@ public class HelperMainGUIFragmentASearch extends Fragment {
             @Override
             public void onClick(View v) {
 
-                getRelevantQuery();
+                String [] data = getRelevantQuery();
+
 
 
 //            IT COULD BE USED TO GO TO THE NEXT CAUSES WINDOW
@@ -139,7 +140,8 @@ public class HelperMainGUIFragmentASearch extends Fragment {
         return text.getText().toString().trim().length() != 0;
     }
 
-    public String getRelevantQuery() {
+
+    public String [] getRelevantQuery() {
 
         String[] f = new String[6];
 
@@ -189,7 +191,12 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
 
 
-        return null;
+        return f;
 
     }
+
+    
+
+
+
 }
