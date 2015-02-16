@@ -937,11 +937,9 @@ public class _DATABASEManager {
                     System.out.println();
                     for (int u = 0; u < returnCauses.length; u++) {
 
-                        if (returnCauses[u].lendingDetails == null)
-                        {
+                        if (returnCauses[u].lendingDetails == null) {
 //                            System.out.println("lending Detaila at [" + u + "]" + " is null");
-                        }
-                        else {
+                        } else {
 
                             for (int p = 0; p < returnCauses[u].lendingDetails.length; p++) {
 
@@ -983,12 +981,100 @@ public class _DATABASEManager {
     }
 
 
+    public String getQueryForHelperSearch(String givenData[]) {
+        String sql = "";
+//        params.add(new BasicNameValuePair("email", givenData[0]));
+//        params.add(new BasicNameValuePair("country", givenData[1]));
+//        params.add(new BasicNameValuePair("city", givenData[2]));
+//        params.add(new BasicNameValuePair("type", givenData[3]));
+//        params.add(new BasicNameValuePair("catagory", givenData[4]));
+//        params.add(new BasicNameValuePair("range", givenData[5]));
+        String email = givenData[0];
+        String country = givenData[1];
+        String city = givenData[2];
+        String type = givenData[3];
+        String catagory = givenData[4];
+        String range = givenData[5];
 
+
+        if (email != "non") {
+
+            sql = "Select * from causes where needyId = (SELECT userId FROM users where email = '$email') ";
+
+        }
+        else 	if (country!="non" || city!= "non" || type!= "non" || catagory!= "non" || range!= "non"   )
+        {
+
+            int count  = 0;
+            sql  = "Select * from  ";
+            if(country!="non" && count==0)
+            {
+                sql+= "causes where country ";
+                count++;
+            }
+            else if (country!="non" && count >0)
+            {
+                sql+= " and country ";
+                count++;
+            }
+
+            if(city!="non" && count==0)
+            {
+                sql+= "causes where city ";
+                count++;
+            }
+            else if (city!="non" && count >0)
+            {
+                sql+= " and city ";
+                count++;
+            }
+
+            if(type!="non" && count==0)
+            {
+                sql+= " causes where type ";
+                count++;
+            }
+            else if (type!="non" && count >0)
+            {
+                sql+= "and type ";
+                count++;
+            }
+
+            if(catagory!="non" && count==0)
+            {
+                sql+= " causes where catagory ";
+                count++;
+            }
+            else if (catagory!="non" && count >0)
+            {
+                sql+= "and catagory ";
+                count++;
+            }
+
+            if(range!="non" && count==0)
+            {
+                sql+= "causes range ";
+                count++;
+            }
+            else if (range!="non" && count >0)
+            {
+                sql+= "and range ";
+                count++;
+            }
+
+
+        }
+
+
+        return sql;
+    }
 
     public Cause[] getSearchResultForHelper(String givenData[]) {
-        Cause[] allCausesByUser = null;
 
-        //        String [] ret = new String[13];
+        System.out.println("IITITITITTTI:  "+getQueryForHelperSearch(givenData));
+
+        Cause[] allCausesByUser = null;
+//        String [] ret = new String[13];
         String ret = "response is null";
 
         String endString = "";
@@ -1106,11 +1192,6 @@ public class _DATABASEManager {
         return allCausesByUser;
 
     }
-
-
-
-
-
 
 
 }
