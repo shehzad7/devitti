@@ -1050,8 +1050,8 @@ public class _DATABASEManager {
                 sql+= "and catagory ";
                 count++;
             }
-
-            if(range!="non" && count==0) 
+           
+            if(range!="non" && count==0)
             {
                 sql+= "causes range ";
                 count++;
