@@ -71,7 +71,7 @@ public class HelperMainGUIFragmentASearch extends Fragment {
                 new getCausesForSearch().execute();
 
 //            IT COULD BE USED TO GO TO THE NEXT CAUSES WINDOW
-//                Intent intn = new Intent(getActivity(), HelperSearchResult.class);
+//               Intent  intn = new Intent(getActivity(), HelperSearchResult.class);
 //                startActivity(intn);
             }
         });
@@ -224,6 +224,14 @@ public class HelperMainGUIFragmentASearch extends Fragment {
             System.out.println("<<<<<<<<>>>>>>>>>> got the result");
             if (st!=null)
             {
+                Cause [] cuSr  = st;
+                // going to the next Search Result window
+                Intent  intnt = new Intent(getActivity(), HelperSearchResult.class);
+                intnt.putExtra("searchCauses" ,cuSr );
+
+                startActivity(intnt);
+
+
                 System.out.println("<<<<<<<<>>>>>>>>>> Its not null, the length is : "+ st.length);
                 String text = "";
                 for (int  i =  0 ; i <st.length ; i ++)

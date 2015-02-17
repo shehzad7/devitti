@@ -3,6 +3,9 @@ package com.example.please.devitti;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 /**
  * Created by please on 12/24/2014.
  */
 public class HelperSearchResult extends Activity implements AdapterView.OnItemClickListener {
 
-
+    SparseArray<Parcelable> causesGot  =null;
     ListView list;
 
     String [] type = {"Donation","Loan","Loan","Donation","Donation",
@@ -43,7 +48,30 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.helper_search_result);
 
+        Bundle b = getIntent().getExtras();
+        if(b!=null)
+        {
+//            Parcelable[] parcelableArray =
+//                    Parcel.readParcelableArray(Cause.class.getClassLoader());
+//            MyClass[] resultArray = null;
+//            if (parcelableArray != null) {
+//                resultArray = Arrays.copyOf(parcelableArray, parcelableArray.length, MyClass[].class);
+//            }
+
+
+
+
+//            causesGot =  b.getSparseParcelableArray("searchCauses");
+//            causesGot =
+//            ArrayList<Parliament> as = (ArrayList<Parliament>)b.getSerializable("tasklist");
+        }
+
+//        causesGot = (Cause []) b.getSerializableExtra("searchCauses");
+
         list = (ListView) findViewById(R.id.HSRList);
+
+
+
 
 
         //By Custom Adapter
