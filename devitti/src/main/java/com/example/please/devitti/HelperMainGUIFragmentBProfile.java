@@ -101,7 +101,7 @@ public class HelperMainGUIFragmentBProfile extends Fragment {
                     (LayoutInflater)myContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
-            View myView = inflater.inflate(R.layout.single_row_list_temp_2, parent, false);
+            View myView = inflater.inflate(R.layout.single_row_list_temp_3, parent, false);
 
             TextView myStatus = (TextView) myView.findViewById(R.id.NECLISTStatusOfCause);
             myStatus.setText(status[position]);

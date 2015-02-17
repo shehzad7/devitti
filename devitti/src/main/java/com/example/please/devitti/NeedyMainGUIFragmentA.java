@@ -386,6 +386,7 @@ public class NeedyMainGUIFragmentA extends Fragment {
 
             //here is the addition for the list item no
             TextView myItemNo = (TextView ) myView.findViewById(R.id.dummyNoForListNoStorage);
+
             myItemNo.setText((String.valueOf( position)));
 
             myCatagory.setText(catagory[position]);

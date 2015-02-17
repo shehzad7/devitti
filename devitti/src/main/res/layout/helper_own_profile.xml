@@ -3,7 +3,8 @@
 <!-- The main linear lay out which has all the other Sub layouts -->
 
 
-<ScrollView
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -92,13 +93,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3424"
-                android:layout_toEndOf="@+id/textView3"
                 android:id="@+id/HOPAmountDonatedValue"
-                android:layout_alignTop="@+id/textView3"
-                android:layout_toRightOf="@+id/textView3"
-                android:layout_marginLeft="51dp" />
+                android:layout_toEndOf="@+id/textView4"
+                android:layout_alignBaseline="@+id/textView5"
+                android:layout_alignBottom="@+id/textView5"
+                android:layout_toRightOf="@+id/textView4"
+                android:layout_marginLeft="46dp" />
 
             <TextView
+                android:visibility="invisible"
                 android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,39 +109,36 @@
                 android:id="@+id/textView4"
                 android:textAppearance="?android:attr/textAppearanceSmall"
 
-                android:layout_alignBaseline="@+id/textView2"
-                android:layout_alignBottom="@+id/textView2"
-                android:layout_toLeftOf="@+id/HOPAmountLendedValue"
-                android:layout_toStartOf="@+id/HOPAmountLendedValue"
-                android:layout_marginRight="28dp" />
+
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/textView3"
+                android:layout_toEndOf="@+id/textView3" />
 
             <TextView
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3234"
+                android:text="9999"
 
                 android:id="@+id/HOPAmountLendedValue"
                 android:layout_gravity="right"
                 android:layout_weight="0.54"
-                android:layout_above="@+id/HOPAmountDonatedValue"
+
+                android:layout_alignParentTop="true"
                 android:layout_alignLeft="@+id/HOPAmountDonatedValue"
-                android:layout_alignStart="@+id/HOPAmountDonatedValue"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignStart="@+id/HOPAmountDonatedValue" />
 
             <TextView
+                android:visibility="invisible"
                 android:paddingLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rs:"
                 android:id="@+id/textView5"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:layout_below="@+id/textView4"
-                android:layout_alignRight="@+id/textView4"
-                android:layout_alignEnd="@+id/textView4"
-                android:layout_alignLeft="@+id/textView4"
-                android:layout_alignStart="@+id/textView4" />
+                android:layout_below="@+id/textView2"
+                android:layout_toRightOf="@+id/textView3"
+                android:layout_toEndOf="@+id/textView3" />
 
 
         </RelativeLayout>
@@ -152,7 +152,7 @@
             android:layout_weight="0.54"
             android:paddingLeft="20dp"
             android:text="List of causes you have lended/donated to. "
-            android:textColor="#ff36e5e5" />
+            android:textColor="#00A3E8" />
 
 
 
@@ -162,6 +162,11 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical">
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#00A3E8"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -183,6 +188,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="0dp" />
+
         </LinearLayout>
 
         <TextView
@@ -198,4 +204,4 @@
 
 </LinearLayout>
 
-</ScrollView>
+    </LinearLayout>
