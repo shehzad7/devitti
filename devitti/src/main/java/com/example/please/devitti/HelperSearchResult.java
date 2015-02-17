@@ -40,7 +40,7 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
     String [] percentageCompleted =  {"90%","100%","100%","40%","100%",
             "43%","23%","21%","100%","100%",
             "56%","76%","87%","100%","100%",
-            "6%","7%","8%","100%","100%",};
+            "6%","7%","8%","100%","100%",}; 
 
     String [] status ={"Not Completed","Completed","Completed","Not Completed","Completed",
             "Not Completed","Closed by needy","Not Completed","Completed","Completed",
