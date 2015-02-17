@@ -68,7 +68,17 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
                 String [] data = getRelevantQuery();
 
-                new getCausesForSearch().execute();
+                Intent  intnt = new Intent(getActivity(), HelperSearchResult.class);
+                intnt.putExtra("dataFromSearchFields" ,dataFromSearchFields );
+
+                startActivity(intnt);
+
+
+//                new getCausesForSearch().execute();
+
+
+
+
 
 //            IT COULD BE USED TO GO TO THE NEXT CAUSES WINDOW
 //               Intent  intn = new Intent(getActivity(), HelperSearchResult.class);
@@ -227,7 +237,7 @@ public class HelperMainGUIFragmentASearch extends Fragment {
                 Cause [] cuSr  = st;
                 // going to the next Search Result window
                 Intent  intnt = new Intent(getActivity(), HelperSearchResult.class);
-                intnt.putExtra("searchCauses" ,cuSr );
+                intnt.putExtra("dataFromSearchFields" ,dataFromSearchFields );
 
                 startActivity(intnt);
 

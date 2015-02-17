@@ -2,20 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#fff8f7f9"
+    android:background="#ffffff"
     android:layout_marginTop="9dp"
     android:layout_marginBottom="5dp"
 
-    >
+>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ffaeaaad"
+        android:id="@+id/linearLayout2ds" />
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#ffdddddd"
         android:id="@+id/linearLayout2" />
     <View
-        android:layout_width="3dp"
+        android:layout_width="1dp"
         android:layout_height="fill_parent"
-        android:background="#ffdddddd"
+        android:background="#ffc4c4c4"
+        android:id="@+id/linearLayoutdds2"
+        android:layout_alignBottom="@+id/NECLISTDescription" />
+    <View
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="2dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffffff"
         android:id="@+id/linearLayoutasd2"
         android:layout_alignBottom="@+id/typeImage" />
 
@@ -32,7 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Percentage of amount given: "
         android:id="@+id/NECLISTPercentageCompleted"
         android:textColor="#ff17b2ff"
@@ -46,7 +60,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="100%"
         android:id="@+id/NECLISTPercentageCompletedValue"
         android:layout_below="@+id/NECLISTCatagoryOfCause"
@@ -58,38 +72,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="The cause is completed"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="(the cause is completed)"
         android:id="@+id/NECLISTStatusOfCause"
         android:textColor="#ff17b2ff"
 
         android:layout_toEndOf="@+id/typeImage"
         android:layout_below="@+id/NECLISTPercentageCompleted"
         android:layout_toRightOf="@+id/typeImage"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="1dp"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="description this is some random text that you can show here .. it can have a limit lets just see how long it can be .. in my opinion it cannot be any  longer that 500 characters but hey who knows it could be larger:) heheehehehehe omg it can be very long .. "
+        android:text="description this is some random text that you ca just the one to say that "
         android:id="@+id/NECLISTDescription"
         android:textColor="#ff799a6b"
         android:paddingBottom="5dp"
-
-
-        android:layout_toEndOf="@+id/typeImage"
-        android:layout_alignBottom="@+id/typeImage"
-        android:layout_toRightOf="@+id/typeImage"
-        android:layout_below="@+id/NECLISTStatusOfCause"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/NECLISTStatusOfCause"
+        android:layout_toRightOf="@+id/typeImage"
+        android:layout_toEndOf="@+id/typeImage" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Education"
         android:id="@+id/NECLISTCatagoryOfCause"
         android:textColor="#ff17b2ff"
@@ -102,17 +113,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/typeImage"
-        android:src="@drawable/donationimage"
+        android:src="@drawable/dummylending"
+
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/linearLayout"
         android:layout_toEndOf="@+id/linearLayout"
-        android:layout_marginTop="1dp"
-        android:layout_marginLeft="1dp"/>
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="3dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Catagory: "
         android:id="@+id/textView423"
         android:textColor="#ff17b2ff"
@@ -137,6 +149,14 @@
         android:layout_above="@+id/NECLISTDescription"
         android:layout_below="@+id/NECLISTPercentageCompletedValue"
         android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/textView423"
+        android:layout_alignEnd="@+id/textView423" />
 
     <!--<View-->
         <!--android:layout_width="fill_parent"-->
