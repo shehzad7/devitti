@@ -92,18 +92,17 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
 
 //        causesGot = (Cause []) b.getSerializableExtra("searchCauses");
 
+
+
+        /*
         list = (ListView) findViewById(R.id.HSRList);
-
-
-
-
 
         //By Custom Adapter
         myOwnCustomAdapter4 adapter = new myOwnCustomAdapter4(this,status, type, percentageCompleted, description);
         list.setAdapter(adapter);
 
         list.setOnItemClickListener(this);
-
+        */
     }
 
 
@@ -157,6 +156,36 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
                 }
              Toast.makeText(HelperSearchResult.this, text,
                         Toast.LENGTH_LONG).show();
+
+
+
+
+
+                String []sts   = {"......","......"};
+                String []tp   = {"......","......"};
+                String []prc   = {"......","......"};
+                String []des   = {"......","......"};
+
+                ///here
+                int a = cuSr.length;
+
+
+                //By Custom Adapter
+                list = (ListView) findViewById(R.id.HSRList);
+                myOwnCustomAdapter4 adapter = new myOwnCustomAdapter4(getApplicationContext(),sts, tp, prc, des);
+                list.setAdapter(adapter);
+
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    }
+                });
+
+
+
+
+
 
             }
 
