@@ -1363,22 +1363,35 @@ public class _DATABASEManager {
         String query = "";
 
 
-        query = "SELECT * FROM lendingDetailsForCauses where causeId  = 10 ";
+//        query = "SELECT * FROM lendingDetailsForCauses where causeId  = '10' ";
+        query = "";
+
 //        SELECT * FROM lendingDetailsForCauses where needyId = '$needyId'
-//        for (int i = 0;  i <causes.length ; i++)
-//        {
-//
-//           if ( i == 0 )
+
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+        params.add(new BasicNameValuePair("code", "giveCauseDetailForTheseCauses"));
+        params.add(new BasicNameValuePair("queryForCauseDetail ", query));
+
+
+        query ="SELECT * FROM lendingDetailsForCauses where ( causeId = 1)  or (causeId  = 2)  or (causeId  = 3) ";
+
+        for (int i = 0;  i <causes.length ; i++)
+        {
+            params.add(new BasicNameValuePair("array[]", causes[i].causeId));
+
+//            if ( i == 0 )
 //           {
-//               query += " where causeId  = " + causes[i].causeId + " ";
+//               query +=   "  ( causeId = " + causes[i].causeId + ") " ;
 //           }
 //           else
 //           {
-//               query += " and causeId  = " + causes[i].causeId + " ";
+//               query += " or (causeId  = " + causes[i].causeId + ") ";
 //
 //           }
-//
-//        }
+
+        }
 
 
 
@@ -1395,10 +1408,6 @@ public class _DATABASEManager {
             HttpClient client = new DefaultHttpClient();
             String postURL = "http://devitti.org/project_phpFiles/giveMeCauseDetail.php";
             HttpPost post = new HttpPost(postURL);
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            params.add(new BasicNameValuePair("code", "giveCauseDetailForTheseCauses"));
-            params.add(new BasicNameValuePair("queryForCauseDetail", query));
 
             UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
             post.setEntity(ent);
