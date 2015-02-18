@@ -23,7 +23,7 @@
         android:layout_height="fill_parent"
         android:background="#ffc4c4c4"
         android:id="@+id/linearLayoutdds2"
-        android:layout_alignBottom="@+id/NECLISTDescription" />
+        android:layout_alignBottom="@+id/NECLISTDescription2" />
     <View
         android:layout_marginLeft="3dp"
         android:layout_marginTop="2dp"
@@ -53,35 +53,34 @@
 
 
         android:layout_below="@+id/textView423"
-        android:layout_toRightOf="@+id/typeImage"
-        android:layout_toLeftOf="@+id/NECLISTPercentageCompletedValue"
-        android:layout_toStartOf="@+id/NECLISTPercentageCompletedValue" />
+        android:layout_toLeftOf="@+id/NECLISTPercentageCompletedValue2"
+        android:layout_toStartOf="@+id/NECLISTPercentageCompletedValue2"
+        android:layout_toRightOf="@+id/typeImage2"
+        android:layout_toEndOf="@+id/typeImage2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="100%"
-        android:id="@+id/NECLISTPercentageCompletedValue"
-        android:layout_below="@+id/NECLISTCatagoryOfCause"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:id="@+id/NECLISTPercentageCompletedValue2"
         android:textColor="#ff17b2ff"
-        />
+        android:layout_above="@+id/dummyNoForListNoStorage2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="(the cause is completed)"
-        android:id="@+id/NECLISTStatusOfCause"
+        android:id="@+id/NECLISTStatusOfCause2"
         android:textColor="#ff17b2ff"
 
-        android:layout_toEndOf="@+id/typeImage"
+        android:layout_toEndOf="@+id/typeImage2"
         android:layout_below="@+id/NECLISTPercentageCompleted"
-        android:layout_toRightOf="@+id/typeImage"
         android:layout_marginBottom="1dp"
-        />
+        android:layout_toRightOf="@+id/typeImage2" />
     <TextView
         android:visibility="visible"
         android:id="@+id/dummyNoForListNoStorage2"
@@ -89,11 +88,11 @@
         android:layout_height="wrap_content"
         android:text="999"
         android:textColor="#ff000000"
-        android:layout_toStartOf="@+id/NECLISTCatagoryOfCause"
+        android:layout_toStartOf="@+id/NECLISTCatagoryOfCause2"
 
         android:layout_below="@+id/NECLISTPercentageCompleted"
-        android:layout_toLeftOf="@+id/NECLISTCatagoryOfCause"
-        android:layout_above="@+id/NECLISTDescription">
+        android:layout_toLeftOf="@+id/NECLISTCatagoryOfCause2"
+        android:layout_above="@+id/NECLISTDescription2">
 
         </TextView>
 
@@ -102,21 +101,21 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="description this is some random text that you ca just the one to say that "
-        android:id="@+id/NECLISTDescription"
+        android:id="@+id/NECLISTDescription2"
         android:textColor="#ff799a6b"
         android:paddingBottom="5dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/NECLISTStatusOfCause"
-        android:layout_toRightOf="@+id/typeImage"
-        android:layout_toEndOf="@+id/typeImage" />
+        android:layout_below="@+id/NECLISTStatusOfCause2"
+        android:layout_toEndOf="@+id/typeImage2"
+        android:layout_toRightOf="@+id/typeImage2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Education"
-        android:id="@+id/NECLISTCatagoryOfCause"
+        android:id="@+id/NECLISTCatagoryOfCause2"
         android:textColor="#ff17b2ff"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -126,7 +125,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/typeImage"
+        android:id="@+id/typeImage2"
         android:src="@drawable/dummylending"
 
         android:layout_alignParentTop="true"
@@ -143,11 +142,9 @@
         android:id="@+id/textView423"
         android:textColor="#ff17b2ff"
 
-        android:layout_alignLeft="@+id/NECLISTPercentageCompleted"
-        android:layout_alignStart="@+id/NECLISTPercentageCompleted"
         android:layout_alignTop="@+id/typeImage"
-        android:layout_toRightOf="@+id/typeImage"
-        />
+        android:layout_toRightOf="@+id/typeImage2"
+        android:layout_toEndOf="@+id/typeImage2" />
 
 
 
