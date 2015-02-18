@@ -301,7 +301,7 @@ public class NeedyMainGUIFragmentA extends Fragment {
                     imagesForDonationType[i] = R.drawable.donationimage;
 
                 }
-                else if(causesByThisUser[i].type.contains("lending"))
+                else if(causesByThisUser[i].type.contains("loan"))
                 {
                     imagesForDonationType[i]= R.drawable.lendingimage;
                     Log.i("LENDDDDDDAaa", causesByThisUser[i].type);
@@ -338,13 +338,12 @@ public class NeedyMainGUIFragmentA extends Fragment {
 
         Context myContext;
 
-        String[] itemNo;
-
         String[] status;
         String[] catagory;
         String[] percentageCompleted;
         String[] description;
         int [] typeImages;
+
 
         public MyListAdapter(Context context, int textViewResourceId, String[] tpe,String [] percentCmpltd, String [] sts, String [] descrip , int [] typeImg ) {
             super(context, textViewResourceId, sts);
@@ -355,6 +354,8 @@ public class NeedyMainGUIFragmentA extends Fragment {
             this.percentageCompleted = percentCmpltd;
             this.description = descrip;
             this.typeImages  = typeImg;
+
+
 
         }
 

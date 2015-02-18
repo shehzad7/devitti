@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -165,9 +166,96 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
                 String []tp   = {"......","......"};
                 String []prc   = {"......","......"};
                 String []des   = {"......","......"};
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
                 ///here
                 int a = cuSr.length;
+                int length = cuSr.length;
+
+                catagory =  new String[length];
+                percentageCompleted =  new String[length];
+                status =  new String[length];
+                description =  new String[length];
+
+                imagesForDonationType  = new int[length];
+
+//            type = new String[length];
+
+
+                for(int i = 0 ; i<length;i++ )
+                {
+//                Integer it = Integer.getInteger(causesByThisUser[i].typeId);\
+
+                    int ii = ( Integer.parseInt(causesByThisUser[i].catagory) ) -1;
+                    catagory[i] = causeCatagoryDetails[ii].catagoryName;
+
+//                type[i]= causesByThisUser[i].typeId;
+
+                    if(causesByThisUser[i].lendingDetails!=null)
+                    {
+                        System.out.println("Lending details for cause: " + causesByThisUser[i].causeId+ " ");
+                        System.out.println();
+
+                        int countMoney = 0;
+                        for (int j   = 0 ; j< causesByThisUser[i].lendingDetails.length ; j++)
+                        {
+                            System.out.println(causesByThisUser[i].lendingDetails[j].amountLended);
+                            countMoney += causesByThisUser[i].lendingDetails[j].amountLended;
+
+                        }
+
+                        int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
+
+                        System.out.println("This is total given: " + countMoney);
+                        System.out.println("This is total demanded: "  + moneyAsked);
+
+//                    System.out.println("This is total demanded: "  + causesByThisUser[i].moneyAskedFor.toString());
+
+                        float ask = moneyAsked;
+                        float given = countMoney;
+                        float result = (given/ask)*100  ;
+
+                        System.out.println("This is percentage: " +(given/ask)*100  );
+                        System.out.println();
+//                    int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
+
+
+                        percentageCompleted[i] = Integer.toString((int) result) +"%";
+
+
+
+                    }
+                    else {percentageCompleted[i] = "0%";}
+
+
+//                percentageCompleted[i] = "100%";
+                    status[i] = causesByThisUser[i].status;
+                    description[i] = causesByThisUser[i].description;
+
+//                type[i] = causesByThisUser[i].type;
+
+                }
+
+
+                for (int i = 0; i<length; i++) {
+//                Log.i(causesByThisUser[i].type,">>>>>>>>>>>>>>" );
+
+                    if (causesByThisUser[i].type.contains("donation"))
+                    {
+                        Log.i("DONAAAAAA", causesByThisUser[i].type);
+                        imagesForDonationType[i] = R.drawable.donationimage;
+
+                    }
+                    else if(causesByThisUser[i].type.contains("lending"))
+                    {
+                        imagesForDonationType[i]= R.drawable.lendingimage;
+                        Log.i("LENDDDDDDAaa", causesByThisUser[i].type);
+
+                    }
+
+                }
+*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
                 //By Custom Adapter
@@ -204,6 +292,10 @@ class myOwnCustomAdapter4 extends ArrayAdapter<String>
     String [] typee;
     String [] percentageCompletedd;
     String [] descriptionn;
+
+    String[] catagory;
+    int [] typeImages;
+
 
 
 
