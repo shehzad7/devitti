@@ -37,9 +37,6 @@
             </intent-filter>
         </activity>
 
-
-
-
         <activity
             android:name="com.example.please.devitti.MainActivity"
             android:label="@string/app_name" >
@@ -57,7 +54,6 @@
 
         <!--<uses-library android:name="com.google.android.maps" />-->
 
-
         <activity
             android:name="com.example.please.devitti.HelperMainGui"
             android:label="@string/app_name"
@@ -68,6 +64,7 @@
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.please.devitti.NeedyMainGui"
             android:label="@string/app_name"

@@ -271,7 +271,7 @@ public class NeedyMainGUIFragmentA extends Fragment {
                     float given = countMoney;
                     float result = (given/ask)*100  ;
 
-                    System.out.println("This is percentage: " +(given/ask)*100  );
+                    System.out.println("!!!!!!!!!!!!This is percentage: " +(given/ask)*100  );
                     System.out.println();
 //                    int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
 

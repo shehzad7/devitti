@@ -1,7 +1,11 @@
 package com.example.please.devitti;
 
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -11,12 +15,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
  * A simple {@link android.app.Fragment} subclass.
  */
 public class HelperMainGUIFragmentBProfile extends Fragment {
+
 
 
     String[] type = {"Donation", "Loan", "Loan", "Donation", "Donation",
@@ -43,6 +49,15 @@ public class HelperMainGUIFragmentBProfile extends Fragment {
     ListView list;
     ArrayAdapter ar;
 
+    String [] dataFromSignIn = null;
+    String  [] ctIds= null ;
+    String  [] ctNms = null;
+
+    _DATABASEManager dM;
+
+    Cause [] profileCauses;
+
+    ProgressDialog dialog;
     public HelperMainGUIFragmentBProfile() {
         // Required empty public constructor
     }
@@ -51,6 +66,17 @@ public class HelperMainGUIFragmentBProfile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        dataFromSignIn = getArguments().getStringArray("searchAndMore");
+        ctIds = getArguments().getStringArray("ctIDs");
+        ctNms = getArguments().getStringArray("ctNms");
+
+        dialog = new ProgressDialog(getActivity());
+        dialog.setMessage("wait man!!!!!!!");
+        dialog.setIndeterminate(false);
+        dialog.show();
+
+//
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.helper_own_profile, container, false);
     }
@@ -60,10 +86,12 @@ public class HelperMainGUIFragmentBProfile extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+//        new getCausesForSearch().execute();
+//        dM.getCausesByHelperId(dataFromSignIn[1]);
 
+
+//        new getCausesForProfile().execute();
         list = (ListView)getActivity().findViewById(R.id.HOFList);
-
-
 
         MyListAdapter myListAdapter =
                 new MyListAdapter(getActivity(), R.layout.single_row_list_temp_2,type,percentageCompleted, status,description);
@@ -72,8 +100,63 @@ public class HelperMainGUIFragmentBProfile extends Fragment {
 
     }
 
+    public class getCausesForProfile extends AsyncTask<Integer, Integer, Cause[]>
+    {
 
-    public class MyListAdapter extends ArrayAdapter<String> {
+        protected Cause[] doInBackground(Integer... params) {
+            //            Cause caus = new Cause(causeId,needyId,moneyAskedFor,descrip,status,type,dateOfRequest,dateOfCompletion,dateOfMaturity,lati,longi,null,catagory);
+//            return dM.getLendingDetailsForACause(new Cause("2","","","","","","","","","","",null,""));
+        System.out.println("<<<<<<<<>>>>>>>>>> I am here");
+
+        return  dM.getCausesByHelperId("8");
+
+    }
+
+    @Override
+    protected void onPostExecute(Cause[] st) {
+        super.onPostExecute(st);
+
+        System.out.println("causes for helperId got the result");
+        if (st!=null)
+        {
+            Cause [] cuSr  = st;
+
+            System.out.println("<<<<<<<<>>>>>>>>>> Its not null, the length is : "+ st.length);
+            String text = "";
+            for (int  i =  0 ; i <st.length ; i ++)
+            {
+                text += "\n " + " id ========= " +st[i].causeId  + " Amount: " + st[i].moneyAskedFor ;
+                System.out.println("id ========  " +st[i].causeId  + " Amount: " + st[i].moneyAskedFor);
+            }
+//            Toast.makeText(getActivity(), text,
+//                    Toast.LENGTH_LONG).show();
+
+        }
+        else
+        {
+            System.out.println("khota");
+        }
+
+
+
+        list = (ListView)getActivity().findViewById(R.id.HOFList);
+
+        MyListAdapter myListAdapter =
+                new MyListAdapter(getActivity(), R.layout.single_row_list_temp_2,type,percentageCompleted, status,description);
+        list.setAdapter(myListAdapter);
+
+
+
+    }
+}
+
+
+
+
+
+
+
+public class MyListAdapter extends ArrayAdapter<String> {
 
         Context myContext;
         String[] status;
@@ -125,6 +208,7 @@ public class HelperMainGUIFragmentBProfile extends Fragment {
 
             return myView;
         }
+
 
     }
 

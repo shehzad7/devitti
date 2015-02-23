@@ -981,94 +981,6 @@ public class _DATABASEManager {
     }
 
 
-    public String getQueryForHelperSearch(String givenData[]) {
-        String sql = "";
-//        params.add(new BasicNameValuePair("email", givenData[0]));
-//        params.add(new BasicNameValuePair("country", givenData[1]));
-//        params.add(new BasicNameValuePair("city", givenData[2]));
-//        params.add(new BasicNameValuePair("type", givenData[3]));
-//        params.add(new BasicNameValuePair("catagory", givenData[4]));
-//        params.add(new BasicNameValuePair("range", givenData[5]));
-        String email = givenData[0];
-        String country = givenData[1];
-        String city = givenData[2];
-        String type = givenData[3];
-        String catagory = givenData[4];
-        String range = givenData[5];
-
-
-        if (email != "non") {
-
-            sql = "Select * from causes where needyId = (SELECT userId FROM users where email = '$email') ";
-
-        }
-        else 	if (country!="non" || city!= "non" || type!= "non" || catagory!= "non" || range!= "non"   )
-        {
-
-            int count  = 0;
-            sql  = "Select * from  ";
-            if(country!="non" && count==0)
-            {
-                sql+= "causes where country ";
-                count++;
-            }
-            else if (country!="non" && count >0)
-            {
-                sql+= " and country ";
-                count++;
-            }
-
-            if(city!="non" && count==0)
-            {
-                sql+= "causes where city ";
-                count++;
-            }
-            else if (city!="non" && count >0)
-            {
-                sql+= " and city ";
-                count++;
-            }
-
-            if(type!="non" && count==0)
-            {
-                sql+= " causes where type ";
-                count++;
-            }
-            else if (type!="non" && count >0)
-            {
-                sql+= "and type ";
-                count++;
-            }
-
-            if(catagory!="non" && count==0)
-            {
-                sql+= " causes where catagory ";
-                count++;
-            }
-            else if (catagory!="non" && count >0)
-            {
-                sql+= "and catagory ";
-                count++;
-            }
-
-            if(range!="non" && count==0)
-            {
-                sql+= "causes range ";
-                count++;
-            }
-            else if (range!="non" && count >0)
-            {
-                sql+= "and range ";
-                count++;
-            }
-
-
-        }
-
-
-        return sql;
-    }
-
     public Cause[] getSearchResultForHelper(String givenData[]) {
 
 //        System.out.println("IITITITITTTI:  "+getQueryForHelperSearch(givenData));
@@ -1356,8 +1268,6 @@ public class _DATABASEManager {
     }
 
 
-
-
     public Cause[] getAllCausesDetailsForAllCauses( Cause[] causes) {
 
         String query = "";
@@ -1552,6 +1462,128 @@ public class _DATABASEManager {
 
         return returnCauses;
     }
+
+
+
+
+
+
+
+    public Cause[] getCausesByHelperId(String helperId) {
+        Cause[] allCausesByUser = null;
+
+        //        String [] ret = new String[13];
+        String ret = "response is null";
+
+        String endString = "";
+
+//        HttpPost httppost = new HttpPost("http://devitti.org/project_phpFiles/signup.php");
+        try {
+            HttpClient client = new DefaultHttpClient();
+            String postURL = "http://devitti.org/project_phpFiles/GiveMeCauses.php";
+            HttpPost post = new HttpPost(postURL);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("code", "causesForHelperId"));
+            params.add(new BasicNameValuePair("helperId", helperId));
+
+            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
+            post.setEntity(ent);
+            HttpResponse responsePOST = client.execute(post);
+            HttpEntity resEntity = responsePOST.getEntity();
+
+
+            if (resEntity != null) {
+//                Log.i("RESPONSE---->>>>", EntityUtils.toString(resEntity));
+
+                String temp = EntityUtils.toString(resEntity);
+
+
+                if (temp == null || "".equals(temp) || temp.length() < 40) {
+                    ret = "no cause found";
+                    Log.i("hehheh   ", helperId);
+
+                } else {
+
+                    Log.i(".........", ".........");
+                    Log.i("i am here too", ".........");
+                    Log.i(".........", ".........");
+
+                    try {
+
+
+                        endString = "";
+                        JSONArray jArray = new JSONArray(temp);
+
+                        allCausesByUser = new Cause[jArray.length()];
+
+
+                        for (int i = 0; i < jArray.length(); i++) {
+
+//                            LendingDetailForCause ldet = new LendingDetailForCause(1,1,1,1,1,"");
+
+                            Cause tempCause = new Cause("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d", null, "cat", "", "");
+
+
+                            JSONObject json_data = jArray.getJSONObject(i);
+                            tempCause.causeId = json_data.getString("causeId");
+                            tempCause.needyId = json_data.getString("needyId");
+                            tempCause.moneyAskedFor = json_data.getString("moneyAskedFor");
+                            tempCause.description = json_data.getString("description");
+
+                            tempCause.status = json_data.getString("status");
+                            tempCause.catagory = json_data.getString("catagory");
+                            tempCause.dateOfRequest = json_data.getString("dateOfRequest");
+                            tempCause.dateOfCompletion = json_data.getString("dateOfCompletion");
+                            tempCause.dateOfMaturity = json_data.getString("dateOfMaturity");
+                            tempCause.latitude = json_data.getString("latitude");
+                            tempCause.longitude = json_data.getString("longitude");
+                            tempCause.type = json_data.getString("type");
+
+                            tempCause.noOfEndorsements = json_data.getString("noOfEndorsements");
+                            tempCause.noOfLendingDetails = json_data.getString("noOfLendingDetails");
+
+                            allCausesByUser[i] = tempCause;
+
+//                            Log.i("CAUSE AT::::: ", ">"+i+"<   " + "CAUSE ID: "+json_data.getString("causeId")+"NeedyID: "+json_data.getString("needyId")
+//                            +"MONEY ASKED FOR: "+ json_data.getString("moneyAskedFor"));
+
+
+                        }
+
+                        //Get an output to the screen
+
+                    } catch (JSONException e) {
+                        Log.e("log_tag", "Error parsing data " + e.toString());
+                    }
+
+
+                    Log.i("USER Details ", ">" + endString + "<");
+
+
+                }
+
+
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        for(int i= 0; i<allCausesByUser.length ; i++)
+//        {
+//            Log.i(i+" "+"CAUSESSSS DETAILLLSSSS: "+ "Money asked for : "+allCausesByUser[i].moneyAskedFor,".........");
+//        }
+
+        return allCausesByUser;
+
+    }
+
+
+
 
 
 
