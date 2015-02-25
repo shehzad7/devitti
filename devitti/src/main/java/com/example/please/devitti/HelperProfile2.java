@@ -171,7 +171,7 @@ public class HelperProfile2 extends Fragment {
 
         @Override
         protected Cause[] doInBackground(String... params) {
-            return dM.getCausesByHelperId("8");
+            return dM.getCausesByHelperId(helperId);
 
 
         }
@@ -191,6 +191,7 @@ public class HelperProfile2 extends Fragment {
             percentageCompleted = new String[length];
             status = new String[length];
             description = new String[length];
+            imagesForDonationType = new int[length];
 
             type = new String[length];
 
@@ -207,17 +208,19 @@ public class HelperProfile2 extends Fragment {
 
                 status[i] = s[i].status;
 
-                for (int p = 0; i < length; i++) {
-                    Log.i(causesByThisUser[p].type, ">>>>>>>>>>>>>>");
 
-                    if (causesByThisUser[p].type.contains("donation")) {
-                        imagesForDonationType[p] = R.drawable.donationimage;
+//                    Log.i(causesByThisUser[p].type, ">>>>>>>>>>>>>>");
 
-                    } else if (causesByThisUser[p].type.contains("loan")) {
-                        imagesForDonationType[p] = R.drawable.lendingimage;
+                    if (causesByThisUser[i].type.contains("donation")) {
+//                        System.out.println("theeeeeeeeeeee donation");
+                        imagesForDonationType[i] = R.drawable.dummydonation;
+
+                    } else if (causesByThisUser[i].type.contains("loan")) {
+                        imagesForDonationType[i] = R.drawable.dummylending;
+//                        System.out.println("theeeeeeeeeeee lending");
                     }
 
-                }
+
 
 
 //                int ii = ( Integer.parseInt(causesByThisUser[i].catagory) ) -1;
@@ -240,7 +243,7 @@ public class HelperProfile2 extends Fragment {
 //
 
             MyListAdapter myListAdapter =
-                    new MyListAdapter(getActivity(), R.layout.single_row_list_temp_3, catagory, percentageCompleted, status, description);
+                    new MyListAdapter(getActivity(), R.layout.single_row_list_temp_3, catagory, percentageCompleted, status, description,imagesForDonationType);
             mainList.setAdapter(myListAdapter);
 
 //            MyListAdapter myListAdapter =
@@ -505,14 +508,16 @@ public class HelperProfile2 extends Fragment {
         String[] type;
         String[] percentageCompleted;
         String[] description;
+        int [] imagesForDonationType;
 
-        public MyListAdapter(Context context, int textViewResourceId, String[] tpe, String[] percentCmpltd, String[] sts, String[] descrip) {
+        public MyListAdapter(Context context, int textViewResourceId, String[] tpe, String[] percentCmpltd, String[] sts, String[] descrip, int [] imgs) {
             super(context, textViewResourceId, sts);
             myContext = context;
             this.status = sts;
             this.type = tpe;
             this.percentageCompleted = percentCmpltd;
             this.description = descrip;
+            this.imagesForDonationType = imgs;
 
         }
 
@@ -535,11 +540,17 @@ public class HelperProfile2 extends Fragment {
             TextView myCatagory = (TextView) myView.findViewById(R.id.NECLISTCatagoryOfCause);
             TextView myPercentage = (TextView) myView.findViewById(R.id.NECLISTPercentageCompletedValue);
             TextView myDescription = (TextView) myView.findViewById(R.id.NECLISTDescription);
+            ImageView myImgtype =  (ImageView) myView.findViewById(R.id.typeImage);
+
+//            typeImage
+
 //
 //            myStatus.setText(statuss[position]);
+            myImgtype.setImageResource(imagesForDonationType[position]);
             myCatagory.setText(type[position]);
             myPercentage.setText(percentageCompleted[position]);
             myDescription.setText(description[position]);
+//            myImgtype.setImageResource(img[]);
 
 
             return myView;

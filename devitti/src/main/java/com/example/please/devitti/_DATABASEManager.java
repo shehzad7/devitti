@@ -1585,7 +1585,7 @@ public class _DATABASEManager {
 
 
 
-    public Cause[] getCausesByHelperId(String needyId) {
+    public Cause[] getCausesByHelperId(String helperId) {
         Cause[] allCausesByUser = null;
 
         //        String [] ret = new String[13];
@@ -1600,7 +1600,7 @@ public class _DATABASEManager {
             HttpPost post = new HttpPost(postURL);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("code", "causesForHelperId"));
-            params.add(new BasicNameValuePair("helperId", "8"));
+            params.add(new BasicNameValuePair("helperId", helperId));
 
             UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
             post.setEntity(ent);
