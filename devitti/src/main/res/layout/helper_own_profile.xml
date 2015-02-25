@@ -180,7 +180,7 @@
 
             <ListView
                 android:layout_width="fill_parent"
-                android:layout_height="500dp"
+                android:layout_height="match_parent"
                 android:id="@+id/HOFList"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"

@@ -25,8 +25,6 @@ import android.widget.Toast;
 public class HelperProfile2 extends Fragment {
 
 
-
-
 //    Cause causes = null;
 
 
@@ -34,14 +32,14 @@ public class HelperProfile2 extends Fragment {
 
     MyListAdapter myListAdapter;
 
-    CauseCatagory [] causeCatagoryDetails;
+    CauseCatagory[] causeCatagoryDetails;
 
-    _DATABASEManager dM =  new _DATABASEManager();
+    _DATABASEManager dM = new _DATABASEManager();
 
-    int [] imagesForDonationType = {R.drawable.donationimage,R.drawable.donationimage, R.drawable.lendingimage ,R.drawable.lendingimage,
-            R.drawable.donationimage,R.drawable.donationimage, R.drawable.lendingimage ,R.drawable.lendingimage ,
-            R.drawable.donationimage,R.drawable.donationimage, R.drawable.lendingimage ,R.drawable.lendingimage ,
-            R.drawable.donationimage,R.drawable.donationimage, R.drawable.lendingimage ,R.drawable.lendingimage };
+    int[] imagesForDonationType = {R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage,
+            R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage,
+            R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage,
+            R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage};
 
 
     String[] catagory = {"catDonation", "catLoan", "catLoan", "catDonation", "catDonation",
@@ -71,18 +69,17 @@ public class HelperProfile2 extends Fragment {
 
 
     ListView mainList;
-       ArrayAdapter ar;
+    ArrayAdapter ar;
 
 
     TextView checking;
 
-    String [] dataFromSignIn;
+    String[] dataFromSignIn;
 
 
+    Cause[] causesByThisUser;
 
-    Cause [] causesByThisUser;
-
-    String needyId= null;
+    String needyId = null;
     String[] ctIds;
     String[] ctNms;
     String helperId;
@@ -113,7 +110,6 @@ public class HelperProfile2 extends Fragment {
 //        mainList = (ListView)container.findViewById(R.id.mainList);
 
 
-
         //By Custom Adapter
 //        myOwnCustomAdapter adapter = new myOwnCustomAdapter(getActivity().getApplicationContext(), status, type, percentageCompleted, description);
 //        mainList.setAdapter(adapter);
@@ -122,19 +118,16 @@ public class HelperProfile2 extends Fragment {
         ctIds = getArguments().getStringArray("ctIDs");
         ctNms = getArguments().getStringArray("ctNms");
 
-        causeCatagoryDetails  = new CauseCatagory[ctIds.length];
-        for (int i  = 0 ; i < ctIds.length; i ++)
-        {
-              System.out.println(ctNms[i]+"$$$$$$$$$$$$$$$$$$$$$");
+        causeCatagoryDetails = new CauseCatagory[ctIds.length];
+        for (int i = 0; i < ctIds.length; i++) {
+            System.out.println(ctNms[i] + "$$$$$$$$$$$$$$$$$$$$$");
 //            causeCatagoryDetails[i].catagoryId = ctIds[i];
 //            causeCatagoryDetails[i].catagoryName = ctNms[i];
 //
         }
 
 
-
         return inflater.inflate(R.layout.helper_own_profile, container, false);
-
 
 
 //        return inflater.inflate(R.layout.fragment, container, false);
@@ -146,7 +139,7 @@ public class HelperProfile2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        mainList = (ListView)getActivity().findViewById(R.id.HOFList);
+        mainList = (ListView) getActivity().findViewById(R.id.HOFList);
 
 //        checking.setText("ID: " +dataFromSignIn[1]+"\n"+
 //                "NAME: "+dataFromSignIn[2]+"\n"+
@@ -174,9 +167,7 @@ public class HelperProfile2 extends Fragment {
     }
 
 
-
-    public class InBagrd extends AsyncTask<String, Integer, Cause[]>
-    {
+    public class InBagrd extends AsyncTask<String, Integer, Cause[]> {
 
         @Override
         protected Cause[] doInBackground(String... params) {
@@ -189,52 +180,73 @@ public class HelperProfile2 extends Fragment {
         protected void onPostExecute(Cause[] s) {
             super.onPostExecute(s);
 
-            int length   = s.length;
+            int length = s.length;
 
             System.out.println("shehzad");
-            causesByThisUser =s;
+            causesByThisUser = s;
             System.out.println("shehzad " + s.length);
             System.out.println("shehzad");
 
-            catagory =  new String[length];
-            percentageCompleted =  new String[length];
-            status =  new String[length];
-            description =  new String[length];
+            catagory = new String[length];
+            percentageCompleted = new String[length];
+            status = new String[length];
+            description = new String[length];
 
             type = new String[length];
 
-            for (int  i =  0  ; i <s.length; i ++)
-            {
-                System.out.println("{{{{{||||||||cause id of the cause by the helper is: " + s[i].causeId);
+            for (int i = 0; i < s.length; i++) {
+//                System.out.println("{{{{{||||||||cause id of the cause by the helper is: " + s[i].causeId);
+
+                //to get catagory names for the catagory IDs from the causes retrieved
+                for (int cat = 0; cat < ctNms.length; cat++) {
+                    if (s[i].catagory.contains(ctIds[cat])) {
+                        System.out.println("Trueeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+                        catagory[i] = ctNms[cat];
+                    }
+                }
+
+                status[i] = s[i].status;
+
+                for (int p = 0; i < length; i++) {
+                    Log.i(causesByThisUser[p].type, ">>>>>>>>>>>>>>");
+
+                    if (causesByThisUser[p].type.contains("donation")) {
+                        imagesForDonationType[p] = R.drawable.donationimage;
+
+                    } else if (causesByThisUser[p].type.contains("loan")) {
+                        imagesForDonationType[p] = R.drawable.lendingimage;
+                    }
+
+                }
 
 
 //                int ii = ( Integer.parseInt(causesByThisUser[i].catagory) ) -1;
+
+//                System.out.println(i+" Catagory ID: " + ii);
+//                System.out.println(i+" Catagory name: " + causeCatagoryDetails[ii].catagoryName);
 //                catagory[i] = causeCatagoryDetails[ii].catagoryName;
 
-                type[i ] =  "";
+                type[i] = "";
 
                 percentageCompleted[i] = "per%";
-                status[i] = "not compppp";
-                description[i] = "desccccc";
+
+                description[i] = s[i].description;
 
 
             }
-
-
 
 
 //            list = (ListView)getActivity().findViewById(R.id.HOFList);
 //
 
             MyListAdapter myListAdapter =
-                    new MyListAdapter(getActivity(), R.layout.single_row_list_temp_3,catagory,percentageCompleted, status,description);
+                    new MyListAdapter(getActivity(), R.layout.single_row_list_temp_3, catagory, percentageCompleted, status, description);
             mainList.setAdapter(myListAdapter);
 
 //            MyListAdapter myListAdapter =
 //                    new MyListAdapter(getActivity(),R.layout.single_row_list_needy_existing_causes,type,percentageCompleted,status,description,imagesForDonationType) ;
 //            mainList.setAdapter(myListAdapter);
 //            new getAllCausesAndDetailsInBagrd().execute();
-
 
 
 //
@@ -336,87 +348,80 @@ public class HelperProfile2 extends Fragment {
 //            new needydoInBagrd().execute(needyId);
 
 
-
-
-
         }
     }
 
 
-/////////////////////////
-    public class getAllCausesAndDetailsInBagrd extends AsyncTask<String, Integer, Cause[]>
-    {
+    /////////////////////////
+    public class getAllCausesAndDetailsInBagrd extends AsyncTask<String, Integer, Cause[]> {
 
         @Override
-        protected Cause [] doInBackground(String... params) {
+        protected Cause[] doInBackground(String... params) {
 
-            return dM.getAllCausesByUserAndDetailsForAllCauses("2",causesByThisUser);
+            return dM.getAllCausesByUserAndDetailsForAllCauses("2", causesByThisUser);
         }
 
         @Override
         protected void onPostExecute(Cause[] s) {
             super.onPostExecute(s);
 
-            causesByThisUser =s;
+            causesByThisUser = s;
 
-            Log.i("AYEEEEEEE:   " , (new Integer(causesByThisUser.length)).toString());
+            Log.i("AYEEEEEEE:   ", (new Integer(causesByThisUser.length)).toString());
 
             int length = causesByThisUser.length;
 
-            catagory =  new String[length];
-            percentageCompleted =  new String[length];
-            status =  new String[length];
-            description =  new String[length];
+            catagory = new String[length];
+            percentageCompleted = new String[length];
+            status = new String[length];
+            description = new String[length];
 
-            imagesForDonationType  = new int[length];
+            imagesForDonationType = new int[length];
 
 //            type = new String[length];
 
 
-            for(int i = 0 ; i<length;i++ )
-            {
+            for (int i = 0; i < length; i++) {
 //                Integer it = Integer.getInteger(causesByThisUser[i].typeId);\
 
-                int ii = ( Integer.parseInt(causesByThisUser[i].catagory) ) -1;
+                int ii = (Integer.parseInt(causesByThisUser[i].catagory)) - 1;
                 catagory[i] = causeCatagoryDetails[ii].catagoryName;
 
 //                type[i]= causesByThisUser[i].typeId;
 
-                if(causesByThisUser[i].lendingDetails!=null)
-                {
-                    System.out.println("Lending details for cause: " + causesByThisUser[i].causeId+ " ");
+                if (causesByThisUser[i].lendingDetails != null) {
+                    System.out.println("Lending details for cause: " + causesByThisUser[i].causeId + " ");
                     System.out.println();
 
                     int countMoney = 0;
-                    for (int j   = 0 ; j< causesByThisUser[i].lendingDetails.length ; j++)
-                    {
+                    for (int j = 0; j < causesByThisUser[i].lendingDetails.length; j++) {
                         System.out.println(causesByThisUser[i].lendingDetails[j].amountLended);
                         countMoney += causesByThisUser[i].lendingDetails[j].amountLended;
 
                     }
 
-                    int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
+                    int moneyAsked = Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
 
                     System.out.println("This is total given: " + countMoney);
-                    System.out.println("This is total demanded: "  + moneyAsked);
+                    System.out.println("This is total demanded: " + moneyAsked);
 
 //                    System.out.println("This is total demanded: "  + causesByThisUser[i].moneyAskedFor.toString());
 
                     float ask = moneyAsked;
                     float given = countMoney;
-                    float result = (given/ask)*100  ;
+                    float result = (given / ask) * 100;
 
-                    System.out.println("!!!!!!!!!!!!This is percentage: " +(given/ask)*100  );
+                    System.out.println("!!!!!!!!!!!!This is percentage: " + (given / ask) * 100);
                     System.out.println();
 //                    int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
 
 
-                    percentageCompleted[i] = Integer.toString((int) result) +"%";
+                    percentageCompleted[i] = Integer.toString((int) result) + "%";
 
 
-
+                } else {
+                    percentageCompleted[i] = "0%";
                 }
-                else {percentageCompleted[i] = "0%";}
 
 
 //                percentageCompleted[i] = "100%";
@@ -428,18 +433,15 @@ public class HelperProfile2 extends Fragment {
             }
 
 
-            for (int i = 0; i<length; i++) {
+            for (int i = 0; i < length; i++) {
 //                Log.i(causesByThisUser[i].type,">>>>>>>>>>>>>>" );
 
-                if (causesByThisUser[i].type.contains("donation"))
-                {
+                if (causesByThisUser[i].type.contains("donation")) {
                     Log.i("DONAAAAAA", causesByThisUser[i].type);
                     imagesForDonationType[i] = R.drawable.donationimage;
 
-                }
-                else if(causesByThisUser[i].type.contains("loan"))
-                {
-                    imagesForDonationType[i]= R.drawable.lendingimage;
+                } else if (causesByThisUser[i].type.contains("loan")) {
+                    imagesForDonationType[i] = R.drawable.lendingimage;
                     Log.i("LENDDDDDDAaa", causesByThisUser[i].type);
 
                 }
@@ -504,7 +506,7 @@ public class HelperProfile2 extends Fragment {
         String[] percentageCompleted;
         String[] description;
 
-        public MyListAdapter(Context context, int textViewResourceId, String[] tpe,String [] percentCmpltd, String [] sts, String [] descrip) {
+        public MyListAdapter(Context context, int textViewResourceId, String[] tpe, String[] percentCmpltd, String[] sts, String[] descrip) {
             super(context, textViewResourceId, sts);
             myContext = context;
             this.status = sts;
@@ -519,9 +521,8 @@ public class HelperProfile2 extends Fragment {
             //return super.getView(position, convertView, parent);
 
 
-
             LayoutInflater inflater =
-                    (LayoutInflater)myContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                    (LayoutInflater) myContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 
             View myView = inflater.inflate(R.layout.single_row_list_temp_3, parent, false);
@@ -541,11 +542,6 @@ public class HelperProfile2 extends Fragment {
             myDescription.setText(description[position]);
 
 
-
-
-
-
-
             return myView;
         }
 
@@ -555,13 +551,7 @@ public class HelperProfile2 extends Fragment {
 }
 
 
-
-
-
-
-
-
-    //test for LDFCIds
+//test for LDFCIds
 
 
 
