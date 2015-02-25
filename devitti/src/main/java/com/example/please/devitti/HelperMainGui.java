@@ -75,7 +75,8 @@ public class HelperMainGui extends FragmentActivity {
                 fragment.setArguments(bdl);
 
             } else if (i == 1) {
-                fragment = new HelperMainGUIFragmentBProfile();
+                fragment = new HelperProfile2();
+//                fragment = new HelperMainGUIFragmentBProfile();
                 fragment.setArguments(bdl);
 
             }

@@ -1469,7 +1469,123 @@ public class _DATABASEManager {
 
 
 
-    public Cause[] getCausesByHelperId(String helperId) {
+//    public Cause[] getCausesByHelperId(String helperId) {
+//        Cause[] allCausesByUser = null;
+//
+//        //        String [] ret = new String[13];
+//        String ret = "response is null";
+//
+//        String endString = "";
+//
+////        HttpPost httppost = new HttpPost("http://devitti.org/project_phpFiles/signup.php");
+//        try {
+//            HttpClient client = new DefaultHttpClient();
+//            String postURL = "http://devitti.org/project_phpFiles/GiveMeCauses.php";
+//            HttpPost post = new HttpPost(postURL);
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//            params.add(new BasicNameValuePair("code", "causesForHelperId"));
+//            params.add(new BasicNameValuePair("helperId", helperId));
+//
+//            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
+//            post.setEntity(ent);
+//            HttpResponse responsePOST = client.execute(post);
+//            HttpEntity resEntity = responsePOST.getEntity();
+//
+//
+//            if (resEntity != null) {
+////                Log.i("RESPONSE---->>>> for getcausesforhelperID", EntityUtils.toString(resEntity));
+//
+//                String temp = EntityUtils.toString(resEntity);
+//
+//
+//                if (temp == null || "".equals(temp) || temp.length() < 40) {
+//                    ret = "no cause found";
+//                    Log.i("hehheh   ", helperId);
+//
+//                } else {
+//
+//                    Log.i(".........", ".........");
+//                    Log.i("i am here too for herper ID causes", ".........");
+//                    Log.i(".........", ".........");
+//
+//                    try {
+//
+//
+//                        endString = "";
+//                        JSONArray jArray = new JSONArray(temp);
+//
+//                        allCausesByUser = new Cause[jArray.length()];
+//
+//
+//                        for (int i = 0; i < jArray.length(); i++) {
+//
+////                            LendingDetailForCause ldet = new LendingDetailForCause(1,1,1,1,1,"");
+//
+//                            Cause tempCause = new Cause("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d", null, "cat", "", "");
+//
+//
+//                            JSONObject json_data = jArray.getJSONObject(i);
+//                            tempCause.causeId = json_data.getString("causeId");
+//                            tempCause.needyId = json_data.getString("needyId");
+//                            tempCause.moneyAskedFor = json_data.getString("moneyAskedFor");
+//                            tempCause.description = json_data.getString("description");
+//
+//                            tempCause.status = json_data.getString("status");
+//                            tempCause.catagory = json_data.getString("catagory");
+//                            tempCause.dateOfRequest = json_data.getString("dateOfRequest");
+//                            tempCause.dateOfCompletion = json_data.getString("dateOfCompletion");
+//                            tempCause.dateOfMaturity = json_data.getString("dateOfMaturity");
+//                            tempCause.latitude = json_data.getString("latitude");
+//                            tempCause.longitude = json_data.getString("longitude");
+//                            tempCause.type = json_data.getString("type");
+//
+//                            tempCause.noOfEndorsements = json_data.getString("noOfEndorsements");
+//                            tempCause.noOfLendingDetails = json_data.getString("noOfLendingDetails");
+//
+//                            allCausesByUser[i] = tempCause;
+//
+////                            Log.i("CAUSE AT::::: ", ">"+i+"<   " + "CAUSE ID: "+json_data.getString("causeId")+"NeedyID: "+json_data.getString("needyId")
+////                            +"MONEY ASKED FOR: "+ json_data.getString("moneyAskedFor"));
+//
+//
+//                        }
+//
+//                        //Get an output to the screen
+//
+//                    } catch (JSONException e) {
+//                        Log.e("log_tag", "Error parsing data causes for helper ID" + e.toString());
+//                    }
+//
+//
+//                    Log.i("USER Details ", ">" + endString + "<");
+//
+//
+//                }
+//
+//
+//            }
+//        } catch (ClientProtocolException e) {
+//            e.printStackTrace();
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//
+////        for(int i= 0; i<allCausesByUser.length ; i++)
+////        {
+////            Log.i(i+" "+"CAUSESSSS DETAILLLSSSS: "+ "Money asked for : "+allCausesByUser[i].moneyAskedFor,".........");
+////        }
+//
+//        return allCausesByUser;
+//
+//    }
+
+
+
+
+    public Cause[] getCausesByHelperId(String needyId) {
         Cause[] allCausesByUser = null;
 
         //        String [] ret = new String[13];
@@ -1484,7 +1600,7 @@ public class _DATABASEManager {
             HttpPost post = new HttpPost(postURL);
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("code", "causesForHelperId"));
-            params.add(new BasicNameValuePair("helperId", helperId));
+            params.add(new BasicNameValuePair("helperId", "8"));
 
             UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
             post.setEntity(ent);
@@ -1499,14 +1615,12 @@ public class _DATABASEManager {
 
 
                 if (temp == null || "".equals(temp) || temp.length() < 40) {
-                    ret = "no cause found";
-                    Log.i("hehheh   ", helperId);
+                    ret = "no cause found for helper ID ......................";
+//                    Log.i("hehheh   ", needyId);
 
                 } else {
 
-                    Log.i(".........", ".........");
-                    Log.i("i am here too", ".........");
-                    Log.i(".........", ".........");
+                    Log.i(".........", "            yes helperId got causessssssssss");
 
                     try {
 
@@ -1581,7 +1695,6 @@ public class _DATABASEManager {
         return allCausesByUser;
 
     }
-
 
 
 
