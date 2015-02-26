@@ -36,6 +36,9 @@ public class HelperProfile2 extends Fragment {
 
     _DATABASEManager dM = new _DATABASEManager();
 
+    TextView amountLended;
+    TextView amountDonated;
+
     int[] imagesForDonationType = {R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage,
             R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage,
             R.drawable.donationimage, R.drawable.donationimage, R.drawable.lendingimage, R.drawable.lendingimage,
@@ -140,6 +143,10 @@ public class HelperProfile2 extends Fragment {
 
 
         mainList = (ListView) getActivity().findViewById(R.id.HOFList);
+        TextView name = (TextView) getActivity().findViewById(R.id.HOPName);
+
+
+        name.setText(dataFromSignIn[2]);
 
 //        checking.setText("ID: " +dataFromSignIn[1]+"\n"+
 //                "NAME: "+dataFromSignIn[2]+"\n"+
@@ -167,11 +174,11 @@ public class HelperProfile2 extends Fragment {
     }
 
 
-    public class InBagrd extends AsyncTask<String, Integer, Cause[]> {
+    public class getAllHelperCausesDetailInBg extends AsyncTask<String, Integer, Cause[]> {
 
         @Override
         protected Cause[] doInBackground(String... params) {
-            return dM.getCausesByHelperId(helperId);
+            return dM.getAllCausesDetailsForHelperCauses(causesByThisUser, helperId);
 
 
         }
@@ -179,6 +186,7 @@ public class HelperProfile2 extends Fragment {
         @Override
         protected void onPostExecute(Cause[] s) {
             super.onPostExecute(s);
+
 
             int length = s.length;
 
@@ -194,6 +202,9 @@ public class HelperProfile2 extends Fragment {
             imagesForDonationType = new int[length];
 
             type = new String[length];
+
+            int totalAmountLended  = 0;
+            int totalAmountDonated = 0;
 
             for (int i = 0; i < s.length; i++) {
 //                System.out.println("{{{{{||||||||cause id of the cause by the helper is: " + s[i].causeId);
@@ -211,14 +222,14 @@ public class HelperProfile2 extends Fragment {
 
 //                    Log.i(causesByThisUser[p].type, ">>>>>>>>>>>>>>");
 
-                    if (causesByThisUser[i].type.contains("donation")) {
+                if (causesByThisUser[i].type.contains("donation")) {
 //                        System.out.println("theeeeeeeeeeee donation");
-                        imagesForDonationType[i] = R.drawable.dummydonation;
+                    imagesForDonationType[i] = R.drawable.dummydonation;
 
-                    } else if (causesByThisUser[i].type.contains("loan")) {
-                        imagesForDonationType[i] = R.drawable.dummylending;
+                } else if (causesByThisUser[i].type.contains("loan")) {
+                    imagesForDonationType[i] = R.drawable.dummylending;
 //                        System.out.println("theeeeeeeeeeee lending");
-                    }
+                }
 
 
 
@@ -235,16 +246,95 @@ public class HelperProfile2 extends Fragment {
 
                 description[i] = s[i].description;
 
+                if(causesByThisUser[i].lendingDetails!=null)
+                {
+                    System.out.println("Lending details for cause: " + causesByThisUser[i].causeId+ " ");
+                    System.out.println();
+
+                    int countMoney = 0;
+                    for (int j   = 0 ; j< causesByThisUser[i].lendingDetails.length ; j++)
+                    {
+                        System.out.println(causesByThisUser[i].lendingDetails[j].amountLended);
+                        countMoney += causesByThisUser[i].lendingDetails[j].amountLended;
+
+                    }
+
+                    int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
+
+                    System.out.println("This is total given: " + countMoney);
+                    System.out.println("This is total demanded: "  + moneyAsked);
+
+//                    System.out.println("This is total demanded: "  + causesByThisUser[i].moneyAskedFor.toString());
+
+                    float ask = moneyAsked;
+                    float given = countMoney;
+                    float result = (given/ask)*100  ;
+
+                    if (causesByThisUser[i].type.contains("loan"))
+                    {
+                        totalAmountLended+=countMoney;
+                    }
+                    else
+                    {
+                        totalAmountDonated+=countMoney;
+                    }
+
+                    System.out.println("!!!!!!!!!!!!This is percentage: " +(given/ask)*100  );
+                    System.out.println();
+//                    int moneyAsked  =Integer.parseInt(causesByThisUser[i].moneyAskedFor.toString());
+
+
+                    percentageCompleted[i] = Integer.toString((int) result) +"%";
+
+//
+//
+                }
+                else {percentageCompleted[i] = "0%";
+                System.out.println("the cause seeem to have no donation at all 0 % so");}
+
+
+
 
             }
 
+//            amountLended.setText(totalAmountLended);
+//            amountDonated.setText(totalAmountDonated);
 
 //            list = (ListView)getActivity().findViewById(R.id.HOFList);
 //
 
+            amountLended = (TextView) getActivity().findViewById(R.id.HOPAmountLendedValue);
+            amountDonated = (TextView) getActivity().findViewById(R.id.HOPAmountDonatedValue);
+            System.out.println("this user has doanted the total amount of :" + totalAmountDonated);
+            System.out.println("this user has lended the total amount of :" + totalAmountLended);
+
+            amountLended.setText((String.valueOf(totalAmountLended)));
+            amountDonated.setText((String.valueOf(totalAmountDonated)));
+
+
             MyListAdapter myListAdapter =
                     new MyListAdapter(getActivity(), R.layout.single_row_list_temp_3, catagory, percentageCompleted, status, description,imagesForDonationType);
             mainList.setAdapter(myListAdapter);
+        }
+    }
+
+    public class InBagrd extends AsyncTask<String, Integer, Cause[]> {
+
+        @Override
+        protected Cause[] doInBackground(String... params) {
+            return dM.getCausesByHelperId(helperId);
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Cause[] s) {
+            super.onPostExecute(s);
+            causesByThisUser = s;
+
+            new getAllHelperCausesDetailInBg().execute();
+
+
 
 //            MyListAdapter myListAdapter =
 //                    new MyListAdapter(getActivity(),R.layout.single_row_list_needy_existing_causes,type,percentageCompleted,status,description,imagesForDonationType) ;
