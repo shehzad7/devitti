@@ -319,7 +319,7 @@ public class NeedyMainGUIFragmentA extends Fragment {
 //from helper profile activity
 
 
-            new getCausesForProfile().execute();
+//            new getCausesForProfile().execute();
 
         }
     }
@@ -485,30 +485,13 @@ public class NeedyMainGUIFragmentA extends Fragment {
 
                     , Toast.LENGTH_SHORT).show();
 
-
-            //////////////////ORIGNAL ONE////////////////////////
-//            new getLendingDetailForACauseInBagrd().execute();//
-            /////////////////////////////////////////////////////
-
-//            new getAllCausesByUserAndDetailsForAllCausesInBagrd().execute();
-
-
-
-
             Bundle bndl=new Bundle();
-
-
-
-
-
-
             Cause ii  = causesByThisUser[item];
             Intent gettotheneedyGUI =new Intent( getActivity(), NeedyClickOnOwnCause.class );
             gettotheneedyGUI.putExtra("ldArray" ,ii );
 //            gettotheneedyGUI.putExtra("causeId", causesByThisUser[item].causeId);
 
             startActivity( gettotheneedyGUI );
-
 
 //            causesByThisUser[]
 

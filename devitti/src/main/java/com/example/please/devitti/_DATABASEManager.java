@@ -1282,31 +1282,35 @@ public class _DATABASEManager {
         List<NameValuePair> params = new ArrayList<NameValuePair>();
 
         params.add(new BasicNameValuePair("code", "giveCauseDetailForTheseCauses"));
-        params.add(new BasicNameValuePair("queryForCauseDetail ", query));
 
 
-        query ="SELECT * FROM lendingDetailsForCauses where ( causeId = 1)  or (causeId  = 2)  or (causeId  = 3) ";
+//        query ="SELECT * FROM lendingDetailsForCauses where ( causeId = 1)  or (causeId  = 2)  or (causeId  = 3) ";
 
+        query =  "";
         for (int i = 0;  i <causes.length ; i++)
         {
-            params.add(new BasicNameValuePair("array[]", causes[i].causeId));
+//            params.add(new BasicNameValuePair("array[]", causes[i].causeId));
 
-//            if ( i == 0 )
-//           {
-//               query +=   "  ( causeId = " + causes[i].causeId + ") " ;
-//           }
-//           else
-//           {
-//               query += " or (causeId  = " + causes[i].causeId + ") ";
-//
-//           }
+            if ( i == 0 )
+           {
+               query +=   "   causeId = " + causes[i].causeId + " " ;
+           }
+           else
+           {
+               query += " or causeId  = " + causes[i].causeId + " ";
+
+           }
 
         }
 
+//        String q = "SELECT * FROM lendingDetailsForCauses where causeId = 4 or causeId = 12";
+        String q = "SELECT * FROM lendingDetailsForCauses where "  + query;
+
+        params.add(new BasicNameValuePair("queryForCauseDetail", q));
 
 
 
-        Log.e("the query  ::::::" , query);
+        Log.e("the query  ::::::" , q);
 
 
         Cause[] returnCauses = causes;
@@ -1873,6 +1877,179 @@ public class _DATABASEManager {
         return returnCauses;
     }
 
+
+
+
+    public Cause[] getAllCausesDetails( Cause[] causes ) {
+
+        String query = "";
+
+
+//        query = "SELECT * FROM lendingDetailsForCauses where causeId  = '10' ";
+        query = "";
+
+//        SELECT * FROM lendingDetailsForCauses where needyId = '$needyId'
+
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+//        Log.e("HHHEEEEELLLLL{PPPPPERRRRRR ID: >",">"+helperId+"<");
+        params.add(new BasicNameValuePair("code", "giveCauseDetailForHelper"));
+//        params.add(new BasicNameValuePair("helperId", helperId));
+
+        Cause[] returnCauses = causes;
+
+        String ret = "response is null";
+        String endString = "";
+
+        try {
+            HttpClient client = new DefaultHttpClient();
+            String postURL = "http://devitti.org/project_phpFiles/giveMeCauseDetail.php";
+            HttpPost post = new HttpPost(postURL);
+
+            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
+            post.setEntity(ent);
+            HttpResponse responsePOST = client.execute(post);
+            HttpEntity resEntity = responsePOST.getEntity();
+
+//            Log.e("I am hereeeeeeeeeee at the give me all causes detail at once ", "");
+
+            if (resEntity != null) {
+
+
+                LendingDetailForCause tempLD[] = null;
+                String temp = EntityUtils.toString(resEntity);
+
+                try {
+                    JSONArray jArray = new JSONArray(temp);
+                    tempLD = new LendingDetailForCause[jArray.length()];
+
+                    //just to check how many causes of thi user has lending details
+                    int count = 1;
+                    System.out.println();
+                    for (int i = 0; i < jArray.length(); i++) {
+                        JSONObject json_data = jArray.getJSONObject(i);
+
+                        System.out.println("........" + json_data.getInt("causeId"));
+                        if (json_data.getInt("causeId") > count) {
+                            count = json_data.getInt("causeId");
+                        }
+                    }
+
+
+                    //add the cause details for all those causes who has them
+
+                    for (int allCauses = 0; allCauses < causes.length; allCauses++) {
+                        causes[allCauses].lendingDetails = null;
+                    }
+
+
+                    for (int ca = 0; ca < returnCauses.length; ca++) {
+
+                        for (int i = 0; i < jArray.length(); i++) {
+
+                            JSONObject json_row = jArray.getJSONObject(i);
+
+                            if (json_row.getString("causeId").contains(returnCauses[ca].causeId.toString())) {
+
+                                if (!(returnCauses[ca].lendingDetails == null)) {
+
+                                    System.out.println("not nulllllll found");
+                                    LendingDetailForCause newLend[] = new LendingDetailForCause[returnCauses[ca].lendingDetails.length + 1];
+
+                                    for (int s = 0; s < newLend.length - 1; s++) {
+
+                                        newLend[s] = returnCauses[ca].lendingDetails[s];
+
+                                    }
+                                    LendingDetailForCause tempLending = new LendingDetailForCause(
+                                            json_row.getInt("LDFCId"), json_row.getInt("causeId"), json_row.getInt("helperId"),
+                                            json_row.getInt("needyId"), json_row.getInt("amountLended"), json_row.getString("status"));// new data added
+
+                                    newLend[newLend.length - 1] = tempLending;
+                                    returnCauses[ca].lendingDetails = newLend;
+
+
+                                }
+
+
+                                if (returnCauses[ca].lendingDetails == null) {
+                                    System.out.println("nullllllll found");
+                                    LendingDetailForCause tempLending = new LendingDetailForCause(json_row.getInt("LDFCId"),
+                                            json_row.getInt("causeId"), json_row.getInt("helperId"), json_row.getInt("needyId"),
+                                            json_row.getInt("amountLended"), json_row.getString("status"));
+
+                                    LendingDetailForCause ld[] = new LendingDetailForCause[1];
+                                    ld[0] = tempLending;
+                                    returnCauses[ca].lendingDetails = ld;
+                                }
+                            }
+
+                        }
+
+                    }
+
+
+                    for (int i = 0; i < jArray.length(); i++) {
+
+
+                        tempLD[i] = new LendingDetailForCause(0, 0, 0, 0, 0, "");
+
+                        JSONObject json_data = jArray.getJSONObject(i);
+
+                        tempLD[i].LDFCId = json_data.getInt("LDFCId");
+                        tempLD[i].causeId = json_data.getInt("causeId");
+                        tempLD[i].helperId = json_data.getInt("helperId");
+                        tempLD[i].needyId = json_data.getInt("needyId");
+                        tempLD[i].amountLended = json_data.getInt("amountLended");
+                        tempLD[i].status = json_data.getString("status");
+                    }
+
+                    System.out.println();
+                    for (int u = 0; u < returnCauses.length; u++) {
+
+                        if (returnCauses[u].lendingDetails == null) {
+//                            System.out.println("lending Detaila at [" + u + "]" + " is null");
+                        } else {
+
+                            for (int p = 0; p < returnCauses[u].lendingDetails.length; p++) {
+
+                                System.out.print(" " + returnCauses[u].lendingDetails[p].LDFCId);
+                                System.out.print(" " + returnCauses[u].lendingDetails[p].causeId);
+                                System.out.print(" " + returnCauses[u].lendingDetails[p].helperId);
+                                System.out.print(" " + returnCauses[u].lendingDetails[p].needyId);
+                                System.out.print(" " + returnCauses[u].lendingDetails[p].amountLended);
+                                System.out.print(" " + returnCauses[u].lendingDetails[p].status);
+
+
+                                System.out.println();
+                            }
+                        }
+                        System.out.println();
+                    }
+
+
+//                    Log.e("no of causes by " + needy_Id, (String.valueOf(CausesByThisUser.length)));
+//                    System.out.println("to confirm: " + CausesByThisUser.length);
+
+                } catch (JSONException e) {
+                    Log.e("log_tag", "Error parsing data " + e.toString());
+                }
+
+
+            } else {
+                System.out.println("Cause Detail not available...");
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return returnCauses;
+    }
 
 
 

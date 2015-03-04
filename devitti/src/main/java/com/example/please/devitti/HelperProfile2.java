@@ -178,7 +178,9 @@ public class HelperProfile2 extends Fragment {
 
         @Override
         protected Cause[] doInBackground(String... params) {
-            return dM.getAllCausesDetailsForHelperCauses(causesByThisUser, helperId);
+
+            return dM.getAllCausesDetailsForAllCauses(causesByThisUser);
+//            return dM.getAllCausesDetailsForHelperCauses(causesByThisUser, helperId);
 
 
         }
@@ -315,8 +317,58 @@ public class HelperProfile2 extends Fragment {
             MyListAdapter myListAdapter =
                     new MyListAdapter(getActivity(), R.layout.single_row_list_temp_3, catagory, percentageCompleted, status, description,imagesForDonationType);
             mainList.setAdapter(myListAdapter);
+
+            mainList.setOnItemClickListener(new listListener());
+
         }
     }
+
+    public class   listListener implements AdapterView.OnItemClickListener {
+
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            TextView itemNo = (TextView) view.findViewById(R.id.dummyNoForListNoStorage2);
+
+            int item = Integer.parseInt(itemNo.getText().toString());
+
+            Toast.makeText(getActivity(),
+
+                    causesByThisUser[item].causeId
+
+                    , Toast.LENGTH_SHORT).show();
+
+
+            //////////////////ORIGNAL ONE////////////////////////
+//            new getLendingDetailForACauseInBagrd().execute();//
+            /////////////////////////////////////////////////////
+
+//            new getAllCausesByUserAndDetailsForAllCausesInBagrd().execute();
+
+
+
+
+            Bundle bndl=new Bundle();
+
+
+
+
+
+
+            Cause ii  = causesByThisUser[item];
+            Intent gettotheneedyGUI =new Intent( getActivity(), NeedyClickOnOwnCause.class );
+            gettotheneedyGUI.putExtra("ldArray" ,ii );
+//            gettotheneedyGUI.putExtra("causeId", causesByThisUser[item].causeId);
+
+            startActivity( gettotheneedyGUI );
+
+
+//            causesByThisUser[]
+
+        }
+    }
+
 
     public class InBagrd extends AsyncTask<String, Integer, Cause[]> {
 
@@ -631,6 +683,10 @@ public class HelperProfile2 extends Fragment {
             TextView myPercentage = (TextView) myView.findViewById(R.id.NECLISTPercentageCompletedValue);
             TextView myDescription = (TextView) myView.findViewById(R.id.NECLISTDescription);
             ImageView myImgtype =  (ImageView) myView.findViewById(R.id.typeImage);
+
+            TextView myItemNo = (TextView ) myView.findViewById(R.id.dummyNoForListNoStorage2);
+
+            myItemNo.setText((String.valueOf( position)));
 
 //            typeImage
 
