@@ -70,6 +70,8 @@ public class HelperMainGUIFragmentASearch extends Fragment {
 
                 Intent  intnt = new Intent(getActivity(), HelperSearchResult.class);
                 intnt.putExtra("dataFromSearchFields" ,dataFromSearchFields );
+                intnt.putExtra("dataFromSignIn" ,dataFromSignIn );
+
 
                 startActivity(intnt);
 

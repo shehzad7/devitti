@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#00A3E8"
+    android:background="#ff8ec5d3"
     android:layout_marginTop="9dp"
     android:layout_marginBottom="5dp"
 
@@ -10,7 +10,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="2dp"
-        android:background="#00A3E8"
+        android:background="#ff8ec5d3"
         android:id="@+id/linearLayout2" />
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,10 +25,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Percentage of amount given: "
         android:id="@+id/NECLISTPercentageCompleted"
-        android:textColor="#ffdcffe5"
+        android:textColor="#ffd2ffe2"
 
 
         android:layout_below="@+id/textView423"
@@ -39,22 +39,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="100%"
         android:id="@+id/NewRowPercentageCompletedValue"
-        android:layout_below="@+id/NewRowCatagoryOfCause"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#ffdcffe5"
-        />
+        android:textColor="#ffd2ffe2"
+        android:layout_alignTop="@+id/NECLISTPercentageCompleted"
+        android:layout_alignRight="@+id/NewRowCatagoryOfCause"
+        android:layout_alignEnd="@+id/NewRowCatagoryOfCause" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="The cause is completed"
         android:id="@+id/NewRowStatusOfCause"
-        android:textColor="#ffdcffe5"
+        android:textColor="#fff8ff6f"
 
         android:layout_toEndOf="@+id/newRowtypeImage"
         android:layout_below="@+id/NECLISTPercentageCompleted"
@@ -68,52 +67,58 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="description this is some random text that you can show here .. it can have a limit lets just see how long it can be .. in my opinion it cannot be any  longer that 500 characters but hey who knows it could be larger:) heheehehehehe omg it can be very long .. "
         android:id="@+id/NewRowDescription"
-        android:textColor="#ffddceff"
+        android:textColor="#ff5b5b5b"
         android:paddingBottom="5dp"
 
 
         android:layout_toEndOf="@+id/newRowtypeImage"
         android:layout_alignBottom="@+id/newRowtypeImage"
         android:layout_toRightOf="@+id/newRowtypeImage"
-        android:layout_below="@+id/NewRowStatusOfCause"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/newRowdummyNoForListNoStorage" />
+
+
+
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Education"
         android:id="@+id/NewRowCatagoryOfCause"
-        android:textColor="#ffffffff"
+        android:textColor="#fff8ff6f"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/newRowtypeImage"
+        android:layout_alignTop="@+id/typeImage"
         />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/newRowtypeImage"
-        android:src="@drawable/donationimage"
+        android:src="@drawable/dummylending"
+
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/linearLayout"
-        android:layout_toEndOf="@+id/linearLayout" />
+        android:layout_toEndOf="@+id/linearLayout"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="3dp"/>
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Catagory: "
         android:id="@+id/textView423"
-        android:textColor="#ffffffff"
+        android:textColor="#fff8ff6f"
 
-        android:layout_alignLeft="@+id/NECLISTPercentageCompleted"
-        android:layout_alignStart="@+id/NECLISTPercentageCompleted"
-        android:layout_alignTop="@+id/newRowtypeImage"
-        android:layout_toRightOf="@+id/newRowtypeImage"
-        />
+        android:layout_alignTop="@+id/typeImage"
+        android:layout_toEndOf="@+id/newRowtypeImage"
+        android:layout_toRightOf="@+id/newRowtypeImage" />
 
     <TextView
         android:visibility="visible"
@@ -121,13 +126,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="999"
-        android:textColor="#000000"
+        android:textColor="#ffa1a1a1"
         android:layout_toRightOf="@+id/NECLISTPercentageCompleted"
         android:layout_toEndOf="@+id/NECLISTPercentageCompleted"
         android:layout_alignRight="@+id/NewRowPercentageCompletedValue"
         android:layout_alignEnd="@+id/NewRowPercentageCompletedValue"
-        android:layout_above="@+id/NewRowDescription"
-        android:layout_below="@+id/NewRowPercentageCompletedValue" />
+        android:layout_below="@+id/NewRowPercentageCompletedValue"
+        android:layout_alignBottom="@+id/NewRowStatusOfCause" />
 
     <!--<View-->
     <!--android:layout_width="fill_parent"-->

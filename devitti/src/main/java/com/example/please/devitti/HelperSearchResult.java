@@ -31,6 +31,7 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
     SparseArray<Parcelable> causesGot = null;
     ListView list;
 
+
     int[] imagesForDonationType = null;
 
     _DATABASEManager dM = new _DATABASEManager();
@@ -68,6 +69,7 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
     ProgressDialog dialog;
 
     Cause[] causesSearhed = null;
+    String[] dataFromSignIn;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,9 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
         list = (ListView) findViewById(R.id.newRowHSRList);
 
         dataFromSearchFields = (String[]) getIntent().getSerializableExtra("dataFromSearchFields");
+        dataFromSignIn = (String[]) getIntent().getSerializableExtra("dataFromSignIn");
+
+//        intnt.putExtra("dataFromSignIn" ,dataFromSignIn );
 
 //        new getCausesForSearch.execute(3);
 
@@ -403,7 +408,36 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    TextView itemNo = (TextView) view.findViewById(R.id.newRowdummyNoForListNoStorage);
+                    TextView percentage = (TextView) view.findViewById(R.id.NewRowPercentageCompletedValue);
+                    int item = Integer.parseInt(itemNo.getText().toString());
+
+                    Bundle bndl=new Bundle();
+                    Cause ii  = causesSearhed[item];
+                    Intent intnt = new Intent(HelperSearchResult.this, CauseFullDetailView.class);
+//                    Intent gettotheneedyGUI =new Intent( Hel, NeedyClickOnOwnCause.class );
+                    intnt.putExtra("cause", ii);
+                    intnt.putExtra("dataFromSignIn",dataFromSignIn);
+                    intnt.putExtra("percentageCompleted",percentage.getText().toString());
+
+//                    TextView myPercentage = (TextView) myView.findViewById(R.id.NewRowPercentageCompletedValue);
+//                    myPercentage.setText(percentageCompleted[position]);
+
+
+
+
+
+                   int clickedView;
+//                    view.findViewById(R.id.NECLISTCatagoryOfCause2)
                     System.out.println("lkjshfasjklfsjlfhdjlak");
+                  //  going to the cause full detail view
+//                       Intent intnt = new Intent(HelperSearchResult.this, CauseFullDetailView.class);
+//                      intnt.putExtra("searchCauses" ,cuSr );
+
+                       startActivity(intnt);
+
+
                 }
             });
 

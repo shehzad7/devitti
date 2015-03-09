@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="description this is some random text that you can show here .. it can have a limit lets just see how long it can be .. in my opinion it cannot be any  longer that 500 characters but hey who knows it could be larger:) heheehehehehe omg it   can be very long .. "
-                android:id="@+id/NECLISTDescription"
+                android:id="@+id/CFDVDescription"
                 android:layout_below="@+id/NECLISTStatusOfCause"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -197,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="100%"
-                    android:id="@+id/sd"
+                    android:id="@+id/CFDVPercentage"
                     android:layout_gravity="right"
                     android:paddingRight="10dp"
 
@@ -244,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="32"
-                    android:id="@+id/textVrfieASDASDw"
+                    android:id="@+id/CFDVnoOfEndorsements"
                     android:layout_gravity="right"
                     android:paddingRight="10dp"
 
@@ -262,15 +262,15 @@
         <RelativeLayout
             android:layout_height="match_parent" android:layout_width="fill_parent">
 
-        <ListView
-            android:layout_height="200dp"
-            android:layout_width="fill_parent"
-            android:id="@+id/CFDVMainList"
-            android:paddingTop="20dp"
-            android:paddingLeft="10dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"/>
+        <!--<ListView-->
+            <!--android:layout_height="200dp"-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:id="@+id/CFDVMainList"-->
+            <!--android:paddingTop="20dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_alignParentTop="true"/>-->
 
     </RelativeLayout>
 
