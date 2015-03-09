@@ -1,8 +1,11 @@
 package com.example.please.devitti;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -37,6 +40,8 @@ public class CauseFullDetailView extends Activity {
 
     Cause theCause;
     String [] dataFromSignIn;
+    ImageButton lendingDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +57,46 @@ public class CauseFullDetailView extends Activity {
         percentage.setText(percen);
 
         TextView noOfEn = (TextView) findViewById(R.id.CFDVnoOfEndorsements);
-        noOfEn.setText(theCause.noOfEndorsements);
-        System.out.println();
+        System.out.println(theCause.noOfEndorsements);
+
+        if ( theCause.noOfEndorsements.contains("null"))
+        {
+//
+            noOfEn.setText("0");
+        }
+        else
+        {
+            noOfEn.setText(theCause.noOfEndorsements);
+
+        }
+        System.out.println("no of lending details for theCause: " + theCause.lendingDetails.length);
+
+
+
+        lendingDetails = (ImageButton) findViewById(R.id.CFDVLendingDetails);
+        lendingDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               System.out.println("lending details button has been clicked");
+                Intent intent = new Intent(CauseFullDetailView.this, NeedyClickOnOwnCause.class);
+                intent.putExtra("ldArray" ,theCause );
+                intent.putExtra("dataFromSignIn",dataFromSignIn);
+
+                startActivity(intent);
+//                Bundle bndl=new Bundle();
+
+//                Intent intent=new Intent( CauseFullDetailView.this, HelperClickOnLendingDetailsForCause.class );
+//                intent.putExtra("CauseGot" ,theCause );
+//            gettotheneedyGUI.putExtra("causeId", causesByThisUser[item].causeId);
+
+//                startActivity( intent );
+
+            }
+        });
+
+
+
+
 
 //        intnt.putExtra("percentageCompleted",percentage.toString());
 

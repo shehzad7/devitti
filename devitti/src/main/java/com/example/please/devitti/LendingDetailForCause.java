@@ -24,6 +24,16 @@ public class LendingDetailForCause  implements Serializable{
         this.status = status_;
 
     }
+    LendingDetailForCause()
+    {
+        this.LDFCId= -1;
+        this.causeId = -1;
+        this.helperId = -1;
+        this.needyId = -1;
+        this.amountLended = -1;
+        this.status = "-1";
+
+    }
 
 
 

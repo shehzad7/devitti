@@ -489,6 +489,8 @@ public class NeedyMainGUIFragmentA extends Fragment {
             Cause ii  = causesByThisUser[item];
             Intent gettotheneedyGUI =new Intent( getActivity(), NeedyClickOnOwnCause.class );
             gettotheneedyGUI.putExtra("ldArray" ,ii );
+            gettotheneedyGUI.putExtra("dataFromSignIn",dataFromSignIn);
+
 //            gettotheneedyGUI.putExtra("causeId", causesByThisUser[item].causeId);
 
             startActivity( gettotheneedyGUI );

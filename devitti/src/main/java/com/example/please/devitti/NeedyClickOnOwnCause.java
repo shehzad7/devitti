@@ -34,6 +34,7 @@ public class NeedyClickOnOwnCause extends Activity {
 
     Cause causegot = null;
 
+    String dataFromSignIn[];
     LendingDetailForCause[] ldExtracted;
 
     private ResourceBundle arguments;
@@ -49,6 +50,10 @@ public class NeedyClickOnOwnCause extends Activity {
 
         NCOOCList = (ListView) findViewById(R.id.NCOOCList);
         causegot = (Cause) getIntent().getSerializableExtra("ldArray");
+
+        dataFromSignIn = (String[])getIntent().getSerializableExtra("dataFromSignIn");
+
+
 //        causeIdClicked = (String) getIntent().getSerializableExtra("causeId");
 
         if (!(causegot.lendingDetails == null || causegot.lendingDetails.length < 1)) {
@@ -77,6 +82,8 @@ public class NeedyClickOnOwnCause extends Activity {
 
             System.out.println("causegotlending details length:  " + causegot.lendingDetails.length);
             System.out.println("extracted lending details length: " + ldExtracted.length);
+
+           System.out.println("THIS REQUEST FOR LENDING DETAILS IS FROM " + dataFromSignIn[5] );
 //        System.out.println("causegotlending details length:  "  + templd.length);
             System.out.println("pointer: " + pointer);
 

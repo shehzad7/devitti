@@ -417,6 +417,7 @@ public class HelperSearchResult extends Activity implements AdapterView.OnItemCl
                     Cause ii  = causesSearhed[item];
                     Intent intnt = new Intent(HelperSearchResult.this, CauseFullDetailView.class);
 //                    Intent gettotheneedyGUI =new Intent( Hel, NeedyClickOnOwnCause.class );
+
                     intnt.putExtra("cause", ii);
                     intnt.putExtra("dataFromSignIn",dataFromSignIn);
                     intnt.putExtra("percentageCompleted",percentage.getText().toString());

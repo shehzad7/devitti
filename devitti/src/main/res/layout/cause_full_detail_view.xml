@@ -233,7 +233,7 @@
                     android:text="No. of endorsements:"
                     android:id="@+id/textViewASDF"
                     android:paddingLeft="20dp"
-                    android:paddingBottom="20dp"
+                    android:paddingBottom="10dp"
 
 
                     android:layout_alignParentLeft="true"
@@ -256,11 +256,23 @@
 
 
 
-
             </LinearLayout>
 
         <RelativeLayout
-            android:layout_height="match_parent" android:layout_width="fill_parent">
+            android:layout_height="match_parent" android:layout_width="fill_parent"
+            android:layout_marginBottom="30dp">
+            <ImageButton
+                android:id="@+id/CFDVLendingDetails"
+                android:layout_width="186dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:layout_marginBottom="40dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginTop="0dp"
+                android:background="@drawable/lendingdetails_button_changer"
+                android:layout_marginRight="20dp"
+
+                />
 
         <!--<ListView-->
             <!--android:layout_height="200dp"-->
