@@ -2,10 +2,14 @@ package com.example.please.devitti;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ResourceBundle;
 
@@ -32,6 +36,7 @@ public class NeedyClickOnOwnCause extends Activity {
 
     ListView NCOOCList;
 
+
     Cause causegot = null;
 
     String dataFromSignIn[];
@@ -39,7 +44,13 @@ public class NeedyClickOnOwnCause extends Activity {
 
     private ResourceBundle arguments;
 
+    LendingDetailForCause LDFCTemp= null;
+    Receipt RECTemp  = null;
+    User lenderDetail  = null;
+
 //    String causeIdClicked = "-1";
+
+    _DATABASEManager dM = new _DATABASEManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +125,11 @@ public class NeedyClickOnOwnCause extends Activity {
                     subLoans[i] = "You have confirmed Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId;
                 } else if (ldExtracted[i].status.contains("request sent to helper")) {
                     subLoans[i] = "You have sent requested the confirmation of Rs: " + ldExtracted[i].amountLended + " to helperID: " + ldExtracted[i].helperId;
-                } else {
+                }
+                else if (ldExtracted[i].status.contains("helper confirmed")) {
+                    subLoans[i] = "Helper has confirmed the amount: " + ldExtracted[i].amountLended + " you sent back to the helper to helperID: " + ldExtracted[i].helperId;
+                }
+                else {
 
                     System.out.println("/////////////////////////////////// not in any catagory man!!!!");
                 }
@@ -136,6 +151,107 @@ public class NeedyClickOnOwnCause extends Activity {
 
     public void setListListener() {
 
+        NCOOCList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        if (causegot.lendingDetails[position].status.contains("request sent to needy"))
+                        {
+                            //the needy will just get a set of information and confirm it
+                            // which will also need the transaction id which contains the status "request sent to needy"
+                            // the status should then be needy confirmed
+
+                            LDFCTemp = causegot.lendingDetails[position];
+
+                            new getUserDetailInBagrd().execute();
+                        }
+                        else if(causegot.lendingDetails[position].status.contains("needy confirmed"))
+                        {
+                            // here, the needy will have the option to send back the money to the helper,
+                            // so he will fill in all  the necessary information.
+                            // including the data from the helper already filled in  and then the needy will only give the information about the tans.. id
+                            // the amount should already be fillled
+                        }
+                        else if(causegot.lendingDetails[position].status.contains("request sent to helper"))
+                        {
+
+                        }
+                        else if(causegot.lendingDetails[position].status.contains("helper confirmed"))
+                        {
+
+                        }
+
+                Toast.makeText(getApplicationContext(),
+
+                        String.valueOf(causegot.lendingDetails[position].amountLended)
+
+                        , Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    public class getRecepitDetailInBagrd extends AsyncTask<String, Integer, Receipt[]>
+    {
+
+
+        protected Receipt[] doInBackground(String... params) {
+
+//            Cause caus = new Cause(causeId,needyId,moneyAskedFor,descrip,status,type,dateOfRequest,dateOfCompletion,dateOfMaturity,lati,longi,null,catagory);
+//            return dM.getLendingDetailsForACause(new Cause("2","","","","","","","","","","",null,""));
+            return  dM.getReceiptsForLDFCId(String.valueOf(LDFCTemp.LDFCId));
+
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Receipt[] rec) {
+            super.onPostExecute(rec);
+
+            System.out.println("                                  ");
+
+            for(int i  = 0  ; i < rec.length; i ++)
+            {
+                //System.out.println("origgggggggggg: >"+ LDFCIdTemp+"<");
+                //System.out.println("newwwwwwwwwwww: >"+ rec[i].LDFCId+"<");
+
+                String LDFCId  = String.valueOf(LDFCTemp.LDFCId);
+                if(LDFCId.contains( rec[i].LDFCId ) && rec[i].status.contains("request sent to the needy")) {
+                    RECTemp   = rec[i];
+
+                    //here, the actual confirmation actually works
+
+                    System.out.println(".............RpId: " + rec[i].RpId + " status: " + rec[i].status);
+                }
+            }
+            System.out.println("                                  ");
+
+        }
+    }
+
+    public class getUserDetailInBagrd extends AsyncTask<String, Integer, User>
+    {
+
+
+        protected User doInBackground(String... params) {
+
+//            Cause caus = new Cause(causeId,needyId,moneyAskedFor,descrip,status,type,dateOfRequest,dateOfCompletion,dateOfMaturity,lati,longi,null,catagory);
+//            return dM.getLendingDetailsForACause(new Cause("2","","","","","","","","","","",null,""));
+            return  dM.getUserDetailByUserId(String.valueOf(LDFCTemp.helperId));
+
+
+
+        }
+
+        @Override
+        protected void onPostExecute(User user) {
+            super.onPostExecute(user);
+            lenderDetail = user;
+            new getRecepitDetailInBagrd().execute();
+
+
+        }
     }
 
 

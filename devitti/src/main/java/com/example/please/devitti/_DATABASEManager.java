@@ -2054,7 +2054,201 @@ public class _DATABASEManager {
 
 
 
+    public Receipt[] getReceiptsForLDFCId(String LDFCId) {
+        Receipt[] allReceipts= null;
 
+        //        String [] ret = new String[13];
+        String ret = "response is null";
+
+        String endString = "";
+
+//        HttpPost httppost = new HttpPost("http://devitti.org/project_phpFiles/signup.php");
+        try {
+            HttpClient client = new DefaultHttpClient();
+            String postURL = "http://devitti.org/project_phpFiles/giveMeReceptDetail.php";
+            HttpPost post = new HttpPost(postURL);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("code", "giveMeReceptDetailForNCOOC"));
+            params.add(new BasicNameValuePair("LDFCId", LDFCId));
+
+            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
+            post.setEntity(ent);
+            HttpResponse responsePOST = client.execute(post);
+            HttpEntity resEntity = responsePOST.getEntity();
+
+
+            if (resEntity != null) {
+//                Log.i("RESPONSE---->>>>", EntityUtils.toString(resEntity));
+
+                String temp = EntityUtils.toString(resEntity);
+
+
+                if (temp == null || "".equals(temp) || temp.length() < 40) {
+                    ret = "no cause found";
+                    //Log.i("hehheh   ", needyId);
+
+                } else {
+
+                    Log.i(".........", ".........");
+                    Log.i("i am here too", ".........");
+                    Log.i(".........", ".........");
+
+                    try {
+
+
+                        endString = "";
+                        JSONArray jArray = new JSONArray(temp);
+
+                        allReceipts = new Receipt[jArray.length()];
+
+
+                        for (int i = 0; i < jArray.length(); i++) {
+
+//                            LendingDetailForCause ldet = new LendingDetailForCause(1,1,1,1,1,"");
+
+                            Receipt tempRec = new Receipt();
+
+
+                            JSONObject json_data = jArray.getJSONObject(i);
+
+
+                            tempRec.RpId = json_data.getString("RpId");
+                            tempRec.LDFCId = json_data.getString("LDFCId");
+                            tempRec.transationId = json_data.getString("transactionId");
+                            tempRec.status = json_data.getString("status");
+
+
+                            allReceipts[i] = tempRec;
+
+//                            Log.i("CAUSE AT::::: ", ">"+i+"<   " + "CAUSE ID: "+json_data.getString("causeId")+"NeedyID: "+json_data.getString("needyId")
+//                            +"MONEY ASKED FOR: "+ json_data.getString("moneyAskedFor"));
+
+
+                        }
+
+                        //Get an output to the screen
+
+                    } catch (JSONException e) {
+                        Log.e("log_tag", "Error parsing data " + e.toString());
+                    }
+
+
+                }
+
+
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        for(int i= 0; i<allCausesByUser.length ; i++)
+//        {
+//            Log.i(i+" "+"CAUSESSSS DETAILLLSSSS: "+ "Money asked for : "+allCausesByUser[i].moneyAskedFor,".........");
+//        }
+
+        return allReceipts;
+
+    }
+
+    public User getUserDetailByUserId(String userId) {
+        User returnUser= new User();
+        //        String [] ret = new String[13];
+        String ret = "response is null";
+
+        String endString = "";
+
+//        HttpPost httppost = new HttpPost("http://devitti.org/project_phpFiles/signup.php");
+        try {
+            HttpClient client = new DefaultHttpClient();
+            String postURL = "http://devitti.org/project_phpFiles/login.php";
+            HttpPost post = new HttpPost(postURL);
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("code", "giveMeUserDetailById"));
+            params.add(new BasicNameValuePair("userId", userId));
+
+            UrlEncodedFormEntity ent = new UrlEncodedFormEntity(params, HTTP.UTF_8);
+            post.setEntity(ent);
+            HttpResponse responsePOST = client.execute(post);
+            HttpEntity resEntity = responsePOST.getEntity();
+
+
+            if (resEntity != null) {
+//                Log.i("RESPONSE---->>>>", EntityUtils.toString(resEntity));
+
+                String temp = EntityUtils.toString(resEntity);
+
+
+                if (temp == null || "".equals(temp) || temp.length() < 40) {
+                    ret = "no cause found";
+                    //Log.i("hehheh   ", needyId);
+
+                } else {
+
+                    Log.i(".........", ".........");
+                    Log.i("i am here too", ".........");
+                    Log.i(".........", ".........");
+
+                    try {
+
+                        endString = "";
+                        JSONArray jArray = new JSONArray(temp);
+
+
+                        JSONObject json_data = jArray.getJSONObject(0);
+                        //Get an output to the screen
+                        returnUser.userId = json_data.getString("userId");
+                        returnUser.name = json_data.getString("name");
+                        returnUser.username = json_data.getString("username");
+                        returnUser.password = json_data.getString("password");
+                        returnUser.type = json_data.getString("type");
+                        returnUser.email = json_data.getString("email");
+                        returnUser.address = json_data.getString("address");
+                        returnUser.city = json_data.getString("city");
+                        returnUser.country = json_data.getString("country");
+                        returnUser.bankName = json_data.getString("bankName");
+                        returnUser.branchCode = json_data.getString("branchCode");
+                        returnUser.accountNo = json_data.getString("accountNo") ;
+
+
+//                            Log.i("CAUSE AT::::: ", ">"+i+"<   " + "CAUSE ID: "+json_data.getString("causeId")+"NeedyID: "+json_data.getString("needyId")
+//                            +"MONEY ASKED FOR: "+ json_data.getString("moneyAskedFor"));
+
+
+
+
+                        //Get an output to the screen
+
+                    } catch (JSONException e) {
+                        Log.e("log_tag", "Error parsing data " + e.toString());
+                    }
+
+
+                }
+
+
+            }
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        for(int i= 0; i<allCausesByUser.length ; i++)
+//        {
+//            Log.i(i+" "+"CAUSESSSS DETAILLLSSSS: "+ "Money asked for : "+allCausesByUser[i].moneyAskedFor,".........");
+//        }
+
+        return returnUser;
+
+    }
 
 
 
