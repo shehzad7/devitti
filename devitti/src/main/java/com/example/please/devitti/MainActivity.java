@@ -176,7 +176,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                Intent openMapSearchPage = new Intent(MainActivity.this, MapSearch.class);
+                Intent openMapSearchPage = new Intent(MainActivity.this, Maps.class);
                 startActivity(openMapSearchPage);
             }
         });

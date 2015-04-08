@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 /**
  * Created by please on 12/24/2014.
  */
-public class NeedyClickOnOwnCause extends Activity {
+public class HelperClickOnCause extends Activity {
 
     String[] subLoans = {"Returned Confirmed my <usman232>",
             "Returned Confirmed my <akram424>",
@@ -94,7 +94,7 @@ public class NeedyClickOnOwnCause extends Activity {
             System.out.println("causegotlending details length:  " + causegot.lendingDetails.length);
             System.out.println("extracted lending details length: " + ldExtracted.length);
 
-           System.out.println("THIS REQUEST FOR LENDING DETAILS IS FROM " + dataFromSignIn[5] );
+            System.out.println("THIS REQUEST FOR LENDING DETAILS IS FROM " + dataFromSignIn[5] );
 //        System.out.println("causegotlending details length:  "  + templd.length);
             System.out.println("pointer: " + pointer);
 
@@ -155,41 +155,41 @@ public class NeedyClickOnOwnCause extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                        if (causegot.lendingDetails[position].status.contains("request sent to needy"))
-                        {
-                            //the needy will just get a set of information and confirm it
-                            // which will also need the transaction id which contains the status "request sent to needy"
-                            // the status should then be needy confirmed
+                if (causegot.lendingDetails[position].status.contains("request sent to needy"))
+                {
+                    //the needy will just get a set of information and confirm it
+                    // which will also need the transaction id which contains the status "request sent to needy"
+                    // the status should then be needy confirmed
 
-                            LDFCTemp = causegot.lendingDetails[position];
-                            new getUserDetailInBagrd().execute();
+                    LDFCTemp = causegot.lendingDetails[position];
+                    new getUserDetailInBagrd().execute();
 
-                        }
-                        else if(causegot.lendingDetails[position].status.contains("needy confirmed"))
-                        {
-                            // here, the needy will have the option to send back the money to the helper,
-                            // so he will fill in all  the necessary information.
-                            // including the data from the helper already filled in  and then the needy will only give the information about the tans.. id
-                            // the amount should already be fillled
+                }
+                else if(causegot.lendingDetails[position].status.contains("needy confirmed"))
+                {
+                    // here, the needy will have the option to send back the money to the helper,
+                    // so he will fill in all  the necessary information.
+                    // including the data from the helper already filled in  and then the needy will only give the information about the tans.. id
+                    // the amount should already be fillled
 
-                            LDFCTemp = causegot.lendingDetails[position];
-                            new getJustUserDetailInBagrd().execute();
+                    LDFCTemp = causegot.lendingDetails[position];
+                    new getJustUserDetailInBagrd().execute();
 
-                            //this info below will be done in the Asyntask end of the getJustUser....
-                            // User lender = lenderDetail;
-                            //we have the user and the previous lending detail
-                            // take all the information from it and then then make a new
-                            // 1. lending detail and 2. a receipt entry associated with that lending detail
+                    //this info below will be done in the Asyntask end of the getJustUser....
+                    // User lender = lenderDetail;
+                    //we have the user and the previous lending detail
+                    // take all the information from it and then then make a new
+                    // 1. lending detail and 2. a receipt entry associated with that lending detail
 
-                        }
-                        else if(causegot.lendingDetails[position].status.contains("request sent to helper"))
-                        {
+                }
+                else if(causegot.lendingDetails[position].status.contains("request sent to helper"))
+                {
 
-                        }
-                        else if(causegot.lendingDetails[position].status.contains("helper confirmed"))
-                        {
+                }
+                else if(causegot.lendingDetails[position].status.contains("helper confirmed"))
+                {
 
-                        }
+                }
 
                 Toast.makeText(getApplicationContext(),
 
