@@ -1,12 +1,14 @@
 package com.example.please.devitti;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by please on 1/1/2015.
  */
-public class Cause implements Serializable{
+public class Cause implements Serializable {
 
     String causeId;
     String needyId;

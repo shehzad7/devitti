@@ -126,14 +126,6 @@
 
 
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/textView423"
-        android:layout_alignEnd="@+id/textView423" />
-
     <!--<View-->
         <!--android:layout_width="fill_parent"-->
         <!--android:layout_height="2dp"-->

@@ -62,8 +62,7 @@ public class NeedyClickOnOwnCause extends Activity {
         NCOOCList = (ListView) findViewById(R.id.NCOOCList);
         causegot = (Cause) getIntent().getSerializableExtra("ldArray");
 
-        dataFromSignIn = (String[])getIntent().getSerializableExtra("dataFromSignIn");
-
+        dataFromSignIn = (String[])getIntent().getSerializableExtra("dataFromSignIn");  
 
 //        causeIdClicked = (String) getIntent().getSerializableExtra("causeId");
 

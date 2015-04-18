@@ -55,7 +55,7 @@ public class HelperOwnProfile extends Activity implements AdapterView.OnItemClic
         setContentView(R.layout.helper_own_profile);
         list = (ListView) findViewById(R.id.HOFList);
 
-        mainScroll = (ScrollView) findViewById(R.id.helperownprofilemainscroll);
+        //mainScroll = (ScrollView) findViewById(R.id.helperownprofilemainscroll);
 
 
         //By Custom Adapter

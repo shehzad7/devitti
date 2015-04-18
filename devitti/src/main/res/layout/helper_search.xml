@@ -281,7 +281,7 @@
                 android:layout_marginLeft="21dp"/>
 
             <ImageButton
-                android:id="@+id/signupp_button"
+                android:id="@+id/mapsButton"
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_gravity="left"

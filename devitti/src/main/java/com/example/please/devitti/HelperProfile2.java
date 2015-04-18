@@ -330,9 +330,16 @@ public class HelperProfile2 extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
             TextView itemNo = (TextView) view.findViewById(R.id.dummyNoForListNoStorage2);
-
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             int item = Integer.parseInt(itemNo.getText().toString());
-
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             Toast.makeText(getActivity(),
 
                     causesByThisUser[item].causeId
@@ -346,22 +353,28 @@ public class HelperProfile2 extends Fragment {
 
 //            new getAllCausesByUserAndDetailsForAllCausesInBagrd().execute();
 
-
-
-
             Bundle bndl=new Bundle();
-
-
-
-
-
-
             Cause ii  = causesByThisUser[item];
-            Intent gettotheneedyGUI =new Intent( getActivity(), NeedyClickOnOwnCause.class );
-            gettotheneedyGUI.putExtra("ldArray" ,ii );
-//            gettotheneedyGUI.putExtra("causeId", causesByThisUser[item].causeId);
+            Intent intnt = new Intent(getActivity(), CauseFullDetailView.class);
+//                    Intent gettotheneedyGUI =new Intent( Hel, NeedyClickOnOwnCause.class );
 
-            startActivity( gettotheneedyGUI );
+            intnt.putExtra("cause", ii);
+            intnt.putExtra("dataFromSignIn",dataFromSignIn);
+            intnt.putExtra("percentageCompleted",percentageCompleted[position].toString());
+
+//                    TextView myPercentage = (TextView) myView.findViewById(R.id.NewRowPercentageCompletedValue);
+//                    myPercentage.setText(percentageCompleted[position]);
+
+            startActivity(intnt);
+
+
+
+//            Bundle bndl=new Bundle();
+//            Cause ii  = causesByThisUser[item];
+//            Intent gettotheneedyGUI =new Intent( getActivity(), NeedyClickOnOwnCause.class );
+//            gettotheneedyGUI.putExtra("ldArray" ,ii );
+////            gettotheneedyGUI.putExtra("causeId", causesByThisUser[item].causeId);
+//            startActivity( gettotheneedyGUI );
 
 
 //            causesByThisUser[]

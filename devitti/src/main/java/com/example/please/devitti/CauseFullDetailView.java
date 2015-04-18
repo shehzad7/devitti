@@ -59,7 +59,8 @@ public class CauseFullDetailView extends Activity {
         TextView noOfEn = (TextView) findViewById(R.id.CFDVnoOfEndorsements);
         System.out.println(theCause.noOfEndorsements);
 
-        if ( theCause.noOfEndorsements.contains("null"))
+        //if ( theCause.noOfEndorsements.contains("null"))
+        if((theCause.lendingDetails == null || theCause.lendingDetails.length < 1))
         {
 //
             noOfEn.setText("0");
@@ -69,8 +70,6 @@ public class CauseFullDetailView extends Activity {
             noOfEn.setText(theCause.noOfEndorsements);
 
         }
-        System.out.println("no of lending details for theCause: " + theCause.lendingDetails.length);
-
 
 
         lendingDetails = (ImageButton) findViewById(R.id.CFDVLendingDetails);

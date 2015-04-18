@@ -1,9 +1,12 @@
 package com.example.please.devitti;
 
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -17,16 +20,52 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Maps extends FragmentActivity {
 
+    _DATABASEManager dM = new _DATABASEManager();
+    Cause[] allCauses;
     Double myLat = 0.999;
     Double myLong = 0.000;
-
+    String percntCmpl[];
+    String dataFromSignIn[];
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+//        Parcelable[] allParcelables = getIntent().getExtras().getParcelableArray("causes");
+//        allCauses = new Cause[allParcelables.length];
+//        for (int i = 0 ; i < allParcelables.length; i++) {
+//            allCauses[i] = (Cause)allParcelables[i];
+//        }
+//        dataFromSignIn
+        dataFromSignIn = (String[]) getIntent().getSerializableExtra("dataFromSignIn");
+        percntCmpl = (String[]) getIntent().getSerializableExtra("percentageCompleted");
+        String temp = (String) getIntent().getSerializableExtra("noOfCauses");
+        int noOfCauses =Integer.valueOf(temp);
+        System.out.println(">><><><><><><>"+noOfCauses+"<><><><><><><><><");
+        allCauses  = new Cause[noOfCauses];
+        for (int i = 0;i  <noOfCauses;  i++)
+        {
+            System.out.println("got     >"+"cause"+i);
+            allCauses[i] = (Cause) getIntent().getSerializableExtra("cause"+i);
+            System.out.println("CauseId recieved: <><><><><> " +allCauses[i].causeId);
+            System.out.println("RECIEVED PERCENTAGE COMPLETED: " +percntCmpl[i]);
+
+
+        }
+
+//        for (int i = 0 ; i <causesForMaps.length;i++)
+//        {
+//            openMapSearchPage.putExtra("cause"+i, causesForMaps[i]);
+//        }
+
+//        allCauses= (Cause[]) getIntent().getSerializableExtra("causes");
+//        for(int i = 0 ;i <allCauses.length;i++)
+//        {
+//            System.out.println("CauseId recieved: " +allCauses.length);
+//        }
         setUpMapIfNeeded();
+
     }
 
     @Override
@@ -34,6 +73,44 @@ public class Maps extends FragmentActivity {
         super.onResume();
         setUpMapIfNeeded();
     }
+
+    public class getCausesInBagrd extends AsyncTask<String, Integer, Cause[]>
+    {
+
+        @Override
+        protected Cause[] doInBackground(String... params) {
+            return dM.getAllCauses();
+        }
+
+        @Override
+        protected void onPostExecute(Cause[] s) {
+            super.onPostExecute(s);
+
+            allCauses =s;
+//            new getCausesDetailInBgrd().execute();
+
+        }
+    }
+
+    public class getCausesDetaillInBgrd extends AsyncTask<String, Integer, Cause[]>
+    {
+
+        @Override
+        protected Cause[] doInBackground(String... params) {
+//            return dM.getAllCausesByUserAndDetailsForAllCauses(allCauses);
+            return dM.getAllCausesDetailsForAllCauses(allCauses);
+        }
+
+        @Override
+        protected void onPostExecute(Cause[] s) {
+            super.onPostExecute(s);
+
+            allCauses =s;
+//            new getAllCausesAndDetailsInBagrd().execute();
+
+        }
+    }
+
 
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
@@ -118,18 +195,53 @@ public class Maps extends FragmentActivity {
 
         mMap.animateCamera(CameraUpdateFactory.zoomTo(6));
 
+for (int i = 0 ; i <allCauses.length; i ++)
+{
+//    mMap.addMarker(new MarkerOptions().position(new LatLng(allCauses[i].latitude,allCauses[i].longitude).ti))
+
+    Double lati = Double.parseDouble(allCauses[i].latitude);
+    Double longti = Double.parseDouble(allCauses[i].longitude);
+
+    mMap.addMarker(new MarkerOptions().position(new LatLng(lati, longti)).title(allCauses[i].causeId));
 
 
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(32.592033, 71.552968)).title("Marker"));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(32.584874, 71.558590)).title("Marker"));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(32.581475, 71.559019)).title("Marker"));
+}
+
+
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(32.592033, 71.552968)).title("Marker"));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(32.584874, 71.558590)).title("Marker"));
+//        mMap.addMarker(new MarkerOptions().position(new LatLng(32.581475, 71.559019)).title("Marker"));
 
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+
+
                 LatLng ltlng = marker.getPosition();
+                String id = marker.getTitle();
+                for(int i = 0 ; i < allCauses.length;  i++)
+                {
+                    System.out.println("marker id: >" +id+"<");
+                    System.out.println("causeid: >" +allCauses[i].causeId+"<");
+                    String str1 = String.valueOf(allCauses[i].causeId);
+                    String str2 = String.valueOf(marker.getTitle());
+
+                    if(str1.equals(str2) )
+                    {
+                        System.out.println("what the hellllllllllllllllllll!!!!!!");
+                        Bundle bndl=new Bundle();
+                        Cause ii  = allCauses[i];
+                        Intent intnt = new Intent(Maps.this, CauseFullDetailView.class);
+                        intnt.putExtra("cause", ii);
+                        intnt.putExtra("dataFromSignIn",dataFromSignIn);
+                        intnt.putExtra("percentageCompleted",percntCmpl[i].toString());
+                        startActivity(intnt);
+
+
+                    }
+                }
                 //now compare it with all the other postions to get the one clicked
                 // then bring in the data\
                 System.out.println("Latitudeeee: "+ltlng.latitude);

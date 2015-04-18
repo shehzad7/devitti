@@ -3,25 +3,26 @@
     android:id="@+id/CFDVScrollViewMain"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="#FFFFFFFF"
 
     >
 
     <!-- The main linear lay out which has all the other Sub layouts -->
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffffff"
         android:orientation="vertical">
         <!-- Logo -->
 
-        <LinearLayout android:focusable="true"
-            android:focusableInTouchMode="true" android:layout_width="0px"
-            android:layout_height="0px" />
+        <!--<LinearLayout android:focusable="true"-->
+            <!--android:focusableInTouchMode="true" android:layout_width="0px"-->
+            <!--android:layout_height="0px" />-->
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:orientation="horizontal"
             android:paddingBottom="0dp"
             android:paddingLeft="20dp"
@@ -309,7 +310,6 @@
         <!--</RelativeLayout>-->
 
     </LinearLayout>
-
 
 
 </ScrollView>
