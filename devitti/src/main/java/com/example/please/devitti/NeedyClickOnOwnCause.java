@@ -40,6 +40,8 @@ public class NeedyClickOnOwnCause extends Activity {
     Cause causegot = null;
 
     String dataFromSignIn[];
+    User user =  new User();
+
     LendingDetailForCause[] ldExtracted;
 
     private ResourceBundle arguments;
@@ -62,7 +64,33 @@ public class NeedyClickOnOwnCause extends Activity {
         NCOOCList = (ListView) findViewById(R.id.NCOOCList);
         causegot = (Cause) getIntent().getSerializableExtra("ldArray");
 
-        dataFromSignIn = (String[])getIntent().getSerializableExtra("dataFromSignIn");  
+        dataFromSignIn = (String[])getIntent().getSerializableExtra("dataFromSignIn");
+
+//        ret[1] = json_data.getString("userId");
+//        ret[2] = json_data.getString("name");
+//        ret[3] = json_data.getString("username");
+//        ret[4] = json_data.getString("password");
+//        ret[5] = json_data.getString("type");
+//        ret[6] = json_data.getString("email");
+//        ret[7] = json_data.getString("address");
+//        ret[8] = json_data.getString("city");
+//        ret[9] = json_data.getString("country");
+//        ret[10] = json_data.getString("bankName");
+//        ret[11] = json_data.getString("branchCode");
+//        ret[12] = json_data.getString("accountNo");
+//        ret[0] = "user details retrieved ";
+        user.userId = dataFromSignIn[1];
+        user.name = dataFromSignIn[2];
+        user.username= dataFromSignIn[3];
+        user.password= dataFromSignIn[4];
+        user.type= dataFromSignIn[5];
+        user.email= dataFromSignIn[6];
+        user.address= dataFromSignIn[7];
+        user.city= dataFromSignIn[8];
+        user.country= dataFromSignIn[9];
+        user.bankName= dataFromSignIn[10];
+        user.branchCode= dataFromSignIn[11];
+        user.accountNo= dataFromSignIn[12];
 
 //        causeIdClicked = (String) getIntent().getSerializableExtra("causeId");
 
@@ -116,26 +144,45 @@ public class NeedyClickOnOwnCause extends Activity {
         if (causegot.lendingDetails != null) {
 //            subLoans  =new String[causegot.lendingDetails.length];
             subLoans = new String[ldExtracted.length];
+            if(user.type.contains("needy")) {
 //
-            for (int i = 0; i < subLoans.length; i++) {
-                if (ldExtracted[i].status.contains("request sent to needy")) {
-                    subLoans[i] = "Request for confirmation of Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId + " ";
-                } else if (ldExtracted[i].status.contains("needy confirmed")) {
-                    subLoans[i] = "You have confirmed Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId;
-                } else if (ldExtracted[i].status.contains("request sent to helper")) {
-                    subLoans[i] = "You have sent requested the confirmation of Rs: " + ldExtracted[i].amountLended + " to helperID: " + ldExtracted[i].helperId;
-                }
-                else if (ldExtracted[i].status.contains("helper confirmed")) {
-                    subLoans[i] = "Helper has confirmed the amount: " + ldExtracted[i].amountLended + " you sent back to the helper to helperID: " + ldExtracted[i].helperId;
-                }
-                else {
+                for (int i = 0; i < subLoans.length; i++) {
+                    if (ldExtracted[i].status.contains("request sent to needy")) {
+                        subLoans[i] = "Request for confirmation of Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId + " ";
+                    } else if (ldExtracted[i].status.contains("needy confirmed")) {
+                        subLoans[i] = "You have confirmed Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId;
+                    } else if (ldExtracted[i].status.contains("request sent to helper")) {
+                        subLoans[i] = "You have sent requested the confirmation of Rs: " + ldExtracted[i].amountLended + " to helperID: " + ldExtracted[i].helperId;
+                    } else if (ldExtracted[i].status.contains("helper confirmed")) {
+                        subLoans[i] = "Helper has confirmed the amount: " + ldExtracted[i].amountLended + " you sent back to the helper to helperID: " + ldExtracted[i].helperId;
+                    } else {
 
-                    System.out.println("/////////////////////////////////// not in any catagory man!!!!");
-                }
+                        System.out.println("/////////////////////////////////// not in any catagory man!!!!");
+                    }
 
-//                subLoans[i]  = causegot.lendingDetails [i].status;
+                    //                subLoans[i]  = causegot.lendingDetails [i].status;
+                }
             }
+            else if(user.type.contains("helper"))
+            {
+                for (int i = 0; i < subLoans.length; i++) {
+                    if (ldExtracted[i].status.contains("request sent to needy")) {
+                        subLoans[i] = "++++++++++++Request for confirmation of Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId + " ";
+                    } else if (ldExtracted[i].status.contains("needy confirmed")) {
+                        subLoans[i] = "++++++++++++You have confirmed Rs: " + ldExtracted[i].amountLended + " sent to you by helperID: " + ldExtracted[i].helperId;
+                    } else if (ldExtracted[i].status.contains("request sent to helper")) {
+                        subLoans[i] = "++++++++++++You have sent requested the confirmation of Rs: " + ldExtracted[i].amountLended + " to helperID: " + ldExtracted[i].helperId;
+                    } else if (ldExtracted[i].status.contains("helper confirmed")) {
+                        subLoans[i] = "++++++++++++Helper has confirmed the amount: " + ldExtracted[i].amountLended + " you sent back to the helper to helperID: " + ldExtracted[i].helperId;
+                    } else {
 
+                        System.out.println("/////////////////////////////////// not in any catagory man!!!!");
+                    }
+
+                    //                subLoans[i]  = causegot.lendingDetails [i].status;
+                }
+
+            }
 
         } else {
 
@@ -153,48 +200,55 @@ public class NeedyClickOnOwnCause extends Activity {
         NCOOCList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(user.type.contains("needy"))
+                {
+                    if (causegot.lendingDetails[position].status.contains("request sent to needy"))
+                    {
+                        //the needy will just get a set of information and confirm it
+                        // which will also need the transaction id which contains the status "request sent to needy"
+                        // the status should then be needy confirmed
+                        LDFCTemp = causegot.lendingDetails[position];
+                        new getUserDetailInBagrd().execute();
 
-                        if (causegot.lendingDetails[position].status.contains("request sent to needy"))
-                        {
-                            //the needy will just get a set of information and confirm it
-                            // which will also need the transaction id which contains the status "request sent to needy"
-                            // the status should then be needy confirmed
+                    }
+                    else if(causegot.lendingDetails[position].status.contains("needy confirmed"))
+                    {
+                        // here, the needy will have the option to send back the money to the helper,
+                        // so he will fill in all  the necessary information.
+                        // including the data from the helper already filled in  and then the needy will only give the information about the tans.. id
+                        // the amount should already be fillled
 
-                            LDFCTemp = causegot.lendingDetails[position];
-                            new getUserDetailInBagrd().execute();
+                        LDFCTemp = causegot.lendingDetails[position];
+                        new getJustUserDetailInBagrd().execute();
 
-                        }
-                        else if(causegot.lendingDetails[position].status.contains("needy confirmed"))
-                        {
-                            // here, the needy will have the option to send back the money to the helper,
-                            // so he will fill in all  the necessary information.
-                            // including the data from the helper already filled in  and then the needy will only give the information about the tans.. id
-                            // the amount should already be fillled
+                        //this info below will be done in the Asyntask end of the getJustUser....
+                        // User lender = lenderDetail;
+                        //we have the user and the previous lending detail
+                        // take all the information from it and then then make a new
+                        // 1. lending detail and 2. a receipt entry associated with that lending detail
 
-                            LDFCTemp = causegot.lendingDetails[position];
-                            new getJustUserDetailInBagrd().execute();
+                    }
+                    else if(causegot.lendingDetails[position].status.contains("request sent to helper"))
+                    {
 
-                            //this info below will be done in the Asyntask end of the getJustUser....
-                            // User lender = lenderDetail;
-                            //we have the user and the previous lending detail
-                            // take all the information from it and then then make a new
-                            // 1. lending detail and 2. a receipt entry associated with that lending detail
+                    }
+                    else if(causegot.lendingDetails[position].status.contains("helper confirmed"))
+                    {
 
-                        }
-                        else if(causegot.lendingDetails[position].status.contains("request sent to helper"))
-                        {
+                    }
+                    Toast.makeText(getApplicationContext(),
 
-                        }
-                        else if(causegot.lendingDetails[position].status.contains("helper confirmed"))
-                        {
+                            String.valueOf(causegot.lendingDetails[position].amountLended)
 
-                        }
+                            , Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(getApplicationContext(),
+                }
+                else if (user.type.contains("helper"))
+                {
 
-                        String.valueOf(causegot.lendingDetails[position].amountLended)
+                }
 
-                        , Toast.LENGTH_SHORT).show();
+
 
             }
         });

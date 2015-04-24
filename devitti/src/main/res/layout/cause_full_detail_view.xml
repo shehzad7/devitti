@@ -264,11 +264,11 @@
             android:layout_marginBottom="30dp">
             <ImageButton
                 android:id="@+id/CFDVLendingDetails"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_gravity="left"
                 android:layout_marginBottom="40dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="18dp"
                 android:layout_marginTop="0dp"
                 android:background="@drawable/lendingdetails_button_changer"
                 android:layout_marginRight="10dp"

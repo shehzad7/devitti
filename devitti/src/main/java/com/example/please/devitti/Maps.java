@@ -50,8 +50,6 @@ public class Maps extends FragmentActivity {
             allCauses[i] = (Cause) getIntent().getSerializableExtra("cause"+i);
             System.out.println("CauseId recieved: <><><><><> " +allCauses[i].causeId);
             System.out.println("RECIEVED PERCENTAGE COMPLETED: " +percntCmpl[i]);
-
-
         }
 
 //        for (int i = 0 ; i <causesForMaps.length;i++)

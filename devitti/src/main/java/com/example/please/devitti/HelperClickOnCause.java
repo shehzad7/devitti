@@ -64,7 +64,6 @@ public class HelperClickOnCause extends Activity {
 
         dataFromSignIn = (String[])getIntent().getSerializableExtra("dataFromSignIn");
 
-
 //        causeIdClicked = (String) getIntent().getSerializableExtra("causeId");
 
         if (!(causegot.lendingDetails == null || causegot.lendingDetails.length < 1)) {

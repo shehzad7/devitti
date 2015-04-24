@@ -67,8 +67,7 @@ public class CauseFullDetailView extends Activity {
         }
         else
         {
-            noOfEn.setText(theCause.noOfEndorsements);
-
+            noOfEn.setText(theCause.noOfEndorsements); 
         }
 
 
